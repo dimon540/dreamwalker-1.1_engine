@@ -7,33 +7,72 @@ console.log("Audio система завантажена");
 
 
 
+
 // =========================
-// AUDIO OBJECTS
+// AUDIO FILES
 // =========================
 
 
-window.audio = {
+window.audioFiles = {
 
 
-    music: null,
+    music:{
 
 
-    ambience: null,
+        menu:
+        "assets/music/menu_theme.mp3",
 
 
-    effects: null,
+        prologue:
+        "assets/music/prologue_city.mp3",
 
 
-    volumes:{
+        mystery:
+        "assets/music/mystery.mp3",
 
 
-        music:0.7,
+        emotional:
+        "assets/music/emotional_piano.mp3",
 
 
-        ambience:0.3,
+        dark:
+        "assets/music/dark_future.mp3"
 
 
-        effects:0.8
+    },
+
+
+
+
+    ambience:{
+
+
+        city:
+        "assets/sounds/ambience/city.mp3",
+
+
+        crowd:
+        "assets/sounds/ambience/crowd.mp3",
+
+
+        wind:
+        "assets/sounds/ambience/wind.mp3"
+
+
+    },
+
+
+
+
+    effects:{
+
+
+        click:
+        "assets/sounds/ui/button_click.mp3",
+
+
+        transition:
+        "assets/sounds/effects/transition.mp3"
 
 
     }
@@ -46,8 +85,44 @@ window.audio = {
 
 
 
+
+
+
 // =========================
-// PLAY MUSIC
+// AUDIO STATE
+// =========================
+
+
+window.audio = {
+
+
+    music:null,
+
+
+    ambience:null,
+
+
+    effectsVolume:0.8,
+
+
+    musicVolume:0.7,
+
+
+    ambienceVolume:0.3
+
+
+
+};
+
+
+
+
+
+
+
+
+// =========================
+// MUSIC
 // =========================
 
 
@@ -56,6 +131,14 @@ function playMusic(file){
 
 
     stopMusic();
+
+
+
+    if(!file){
+
+        return;
+
+    }
 
 
 
@@ -68,7 +151,7 @@ function playMusic(file){
 
 
     audio.music.volume =
-    audio.volumes.music;
+    audio.musicVolume;
 
 
 
@@ -78,7 +161,7 @@ function playMusic(file){
 
 
         console.log(
-            "Музика запущена:",
+            "Музика:",
             file
         );
 
@@ -90,7 +173,7 @@ function playMusic(file){
 
 
         console.log(
-            "Автозапуск музики заблокований",
+            "Музика очікує взаємодії користувача",
             error
         );
 
@@ -106,16 +189,12 @@ function playMusic(file){
 
 
 
-// =========================
-// STOP MUSIC
-// =========================
-
-
 function stopMusic(){
 
 
 
     if(audio.music){
+
 
 
         audio.music.pause();
@@ -125,6 +204,7 @@ function stopMusic(){
 
 
         audio.music = null;
+
 
 
     }
@@ -139,8 +219,9 @@ function stopMusic(){
 
 
 
+
 // =========================
-// PLAY AMBIENCE
+// AMBIENCE
 // =========================
 
 
@@ -149,6 +230,14 @@ function playAmbience(file){
 
 
     stopAmbience();
+
+
+
+    if(!file){
+
+        return;
+
+    }
 
 
 
@@ -161,7 +250,7 @@ function playAmbience(file){
 
 
     audio.ambience.volume =
-    audio.volumes.ambience;
+    audio.ambienceVolume;
 
 
 
@@ -171,12 +260,13 @@ function playAmbience(file){
 
 
         console.log(
-            "Атмосфера запущена:",
+            "Атмосфера:",
             file
         );
 
 
     })
+
 
     .catch(()=>{});
 
@@ -188,10 +278,6 @@ function playAmbience(file){
 
 
 
-
-// =========================
-// STOP AMBIENCE
-// =========================
 
 
 function stopAmbience(){
@@ -211,6 +297,7 @@ function stopAmbience(){
         audio.ambience=null;
 
 
+
     }
 
 
@@ -223,12 +310,21 @@ function stopAmbience(){
 
 
 
+
 // =========================
-// SOUND EFFECT
+// EFFECTS
 // =========================
 
 
-function playSound(file){
+function playEffect(file){
+
+
+
+    if(!file){
+
+        return;
+
+    }
 
 
 
@@ -238,7 +334,7 @@ function playSound(file){
 
 
     sound.volume =
-    audio.volumes.effects;
+    audio.effectsVolume;
 
 
 
@@ -255,6 +351,8 @@ function playSound(file){
 
 
 
+
+
 // =========================
 // MENU AUDIO
 // =========================
@@ -265,11 +363,12 @@ function playMenuAudio(){
 
 
     playMusic(
-        "assets/music/menu_theme.mp3"
+        audioFiles.music.menu
     );
 
 
 }
+
 
 
 
@@ -282,30 +381,73 @@ function playMenuAudio(){
 // =========================
 
 
-function playSceneAudio(scene){
+function playSceneAudio(sceneName){
 
 
 
     stopMusic();
 
-
     stopAmbience();
 
 
 
-    if(scene==="scene1"){
+
+    switch(sceneName){
 
 
 
-        playMusic(
-        "assets/music/prologue_city.mp3"
-        );
+        case "scene1":
 
 
 
-        playAmbience(
-        "assets/sounds/ambience/city.mp3"
-        );
+            playMusic(
+                audioFiles.music.prologue
+            );
+
+
+
+            playAmbience(
+                audioFiles.ambience.city
+            );
+
+
+
+            break;
+
+
+
+
+
+        case "scene2":
+
+
+
+            playMusic(
+                audioFiles.music.mystery
+            );
+
+
+
+            playAmbience(
+                audioFiles.ambience.wind
+            );
+
+
+
+            break;
+
+
+
+
+
+        default:
+
+
+
+            console.log(
+                "Для сцени немає аудіо:",
+                sceneName
+            );
 
 
 
@@ -321,8 +463,9 @@ function playSceneAudio(scene){
 
 
 
+
 // =========================
-// VOLUME CONTROL
+// VOLUME SETTINGS
 // =========================
 
 
@@ -330,7 +473,7 @@ function setMusicVolume(value){
 
 
 
-    audio.volumes.music =
+    audio.musicVolume =
     value;
 
 
@@ -345,6 +488,7 @@ function setMusicVolume(value){
     }
 
 
+
 }
 
 
@@ -356,7 +500,7 @@ function setAmbienceVolume(value){
 
 
 
-    audio.volumes.ambience =
+    audio.ambienceVolume =
     value;
 
 
@@ -383,8 +527,9 @@ function setEffectsVolume(value){
 
 
 
-    audio.volumes.effects =
+    audio.effectsVolume =
     value;
+
 
 
 }
