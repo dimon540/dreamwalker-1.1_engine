@@ -1,1 +1,480 @@
+/* =========================================
+   DREAMWALKER ENGINE 1.0
+   GAME INTERFACE
+========================================= */
 
+
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+
+.game-screen {
+
+    width:100%;
+
+    height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+
+.background {
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+
+    background-size:cover;
+
+
+    background-position:center;
+
+
+
+    transition:
+    background-image 0.8s ease;
+
+
+
+}
+
+
+
+
+
+
+/* DARK OVERLAY */
+
+
+.game-screen::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    background:
+
+    linear-gradient(
+
+    to top,
+
+    rgba(0,0,0,0.75),
+
+    rgba(0,0,0,0.15)
+
+    );
+
+
+
+    pointer-events:none;
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   DIALOG BOX
+========================= */
+
+
+
+.dialogue-box {
+
+
+    position:absolute;
+
+
+    left:50%;
+
+
+    bottom:45px;
+
+
+
+    transform:
+    translateX(-50%);
+
+
+
+    width:
+    min(85%,1000px);
+
+
+
+    min-height:
+    180px;
+
+
+
+    padding:
+    35px 45px;
+
+
+
+    background:
+
+
+    rgba(8,12,25,0.78);
+
+
+
+    backdrop-filter:
+    blur(18px);
+
+
+
+    border:
+
+
+    1px solid
+    rgba(255,255,255,0.18);
+
+
+
+    border-radius:
+
+    24px;
+
+
+
+    box-shadow:
+
+
+    0 0 40px
+    rgba(0,0,0,0.6);
+
+
+
+    color:white;
+
+
+
+    z-index:5;
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+   CHARACTER NAME
+========================= */
+
+
+
+.speaker {
+
+
+    display:inline-block;
+
+
+    margin-bottom:18px;
+
+
+
+    padding:
+
+    8px 22px;
+
+
+
+    background:
+
+    rgba(140,123,255,0.25);
+
+
+
+    border:
+
+    1px solid
+    rgba(184,175,255,0.5);
+
+
+
+    border-radius:
+
+    12px;
+
+
+
+    font-size:
+
+    24px;
+
+
+
+    font-weight:
+
+    700;
+
+
+
+    color:
+
+    #dcd7ff;
+
+
+
+}
+
+
+
+
+
+
+/* =========================
+   TEXT
+========================= */
+
+
+.dialogue-box .text {
+
+
+    font-size:
+
+    24px;
+
+
+
+    line-height:
+
+    1.6;
+
+
+
+    min-height:
+
+    70px;
+
+
+
+    white-space:
+
+    pre-line;
+
+
+
+    color:
+
+    #f4f5ff;
+
+
+
+}
+
+
+
+
+
+
+/* =========================
+   NEXT BUTTON
+========================= */
+
+
+.dialogue-box button {
+
+
+
+    position:absolute;
+
+
+
+    right:35px;
+
+
+    bottom:25px;
+
+
+
+    padding:
+
+    12px 35px;
+
+
+
+    border-radius:
+
+    14px;
+
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #8c7bff,
+
+    #5b4cff
+
+    );
+
+
+
+    color:white;
+
+
+
+    font-size:
+
+    18px;
+
+
+
+    font-weight:
+
+    600;
+
+
+
+    transition:
+
+    0.3s;
+
+
+
+    box-shadow:
+
+    0 0 20px
+    rgba(140,123,255,0.35);
+
+
+
+}
+
+
+
+.dialogue-box button:hover {
+
+
+
+    transform:
+
+    translateY(-3px);
+
+
+
+    box-shadow:
+
+    0 0 35px
+    rgba(140,123,255,0.7);
+
+
+
+}
+
+
+
+
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+
+@media(max-width:700px){
+
+
+
+.dialogue-box {
+
+
+    width:92%;
+
+
+    bottom:20px;
+
+
+    padding:25px;
+
+
+}
+
+
+
+.dialogue-box .text {
+
+
+    font-size:18px;
+
+
+}
+
+
+
+.speaker {
+
+
+    font-size:20px;
+
+
+}
+
+
+
+.dialogue-box button {
+
+
+    position:relative;
+
+
+    right:auto;
+
+
+    bottom:auto;
+
+
+    margin-top:20px;
+
+
+}
+
+
+}
