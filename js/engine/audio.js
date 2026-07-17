@@ -1,6 +1,6 @@
 // =========================
 // DREAMWALKER AUDIO SYSTEM
-// MULTI CHANNEL VERSION
+// FINAL MIX VERSION
 // =========================
 
 
@@ -106,10 +106,10 @@ window.audio = {
     musicVolume:0.7,
 
 
-    ambienceVolume:0.35,
+    ambienceVolume:0.12,
 
 
-    effectsVolume:0.8
+    effectsVolume:0.9
 
 
 
@@ -124,12 +124,11 @@ window.audio = {
 
 
 // =========================
-// MUSIC CHANNEL
+// MUSIC
 // =========================
 
 
 function playMusic(file){
-
 
 
     if(!file)
@@ -138,7 +137,6 @@ function playMusic(file){
 
 
     stopMusic();
-
 
 
 
@@ -161,13 +159,12 @@ function playMusic(file){
 
 
         console.log(
-            "Музика:",
+            "Музика запущена:",
             file
         );
 
 
     })
-
 
     .catch(()=>{
 
@@ -199,10 +196,10 @@ function stopMusic(){
         audio.music.pause();
 
 
-        audio.music.currentTime = 0;
+        audio.music.currentTime=0;
 
 
-        audio.music = null;
+        audio.music=null;
 
 
     }
@@ -220,7 +217,7 @@ function stopMusic(){
 
 
 // =========================
-// AMBIENCE CHANNEL
+// MAIN AMBIENCE
 // =========================
 
 
@@ -237,18 +234,17 @@ function playAmbience(file){
 
 
 
-
     audio.ambience =
     new Audio(file);
 
 
 
-    audio.ambience.loop = true;
+    audio.ambience.loop=true;
+
 
 
     audio.ambience.volume =
     audio.ambienceVolume;
-
 
 
 
@@ -264,7 +260,6 @@ function playAmbience(file){
 
 
     })
-
 
     .catch(()=>{});
 
@@ -285,7 +280,6 @@ function stopAmbience(){
     if(audio.ambience){
 
 
-
         audio.ambience.pause();
 
 
@@ -293,7 +287,6 @@ function stopAmbience(){
 
 
         audio.ambience=null;
-
 
 
     }
@@ -324,7 +317,6 @@ function playEffect(file){
 
 
 
-
     const sound =
     new Audio(file);
 
@@ -352,10 +344,9 @@ function playEffect(file){
 
 
 // =========================
-// TEMPORARY AMBIENCE FX
+// TEMPORARY SOUNDS
+// crowd / wind
 // =========================
-// crowd, wind etc.
-// не выключают city.mp3
 
 
 function playAmbienceEffect(file){
@@ -373,7 +364,7 @@ function playAmbienceEffect(file){
 
 
     sound.volume =
-    audio.effectsVolume * 0.7;
+    0.75;
 
 
 
@@ -399,6 +390,7 @@ function playAmbienceEffect(file){
 
 
 function playMenuAudio(){
+
 
 
     playMusic(
@@ -487,7 +479,7 @@ function playSceneAudio(sceneName){
 
 
             console.log(
-                "Аудіо сцени не знайдено:",
+                "Аудіо сцени відсутнє:",
                 sceneName
             );
 
@@ -507,7 +499,7 @@ function playSceneAudio(sceneName){
 
 
 // =========================
-// VOLUME
+// SETTINGS
 // =========================
 
 
@@ -515,8 +507,7 @@ function setMusicVolume(value){
 
 
 
-    audio.musicVolume =
-    value;
+    audio.musicVolume=value;
 
 
 
@@ -536,8 +527,7 @@ function setAmbienceVolume(value){
 
 
 
-    audio.ambienceVolume =
-    value;
+    audio.ambienceVolume=value;
 
 
 
@@ -557,8 +547,7 @@ function setEffectsVolume(value){
 
 
 
-    audio.effectsVolume =
-    value;
+    audio.effectsVolume=value;
 
 
 
