@@ -1,170 +1,178 @@
-// =========================
-// DREAMWALKER RENDERER
-// =========================
+// =========================================
+// DREAMWALKER ENGINE 1.0
+// RENDERER SYSTEM
+// =========================================
 
 
 console.log("Renderer завантажено");
 
 
 
-// =========================
-// RENDER STEP
-// =========================
 
 
-function renderStep(step){
-
-
-    console.log(
-        "Відображення кроку:",
-        step
-    );
+window.Renderer = {
 
 
 
-    const app =
-    document.getElementById("app");
+
+
+    renderScene(step){
 
 
 
-    if(!app){
-
-
-        console.error(
-            "Елемент app не знайдено"
+        console.log(
+            "Відображення кроку:",
+            step
         );
 
 
-        return;
 
 
-    }
-
-
-
-    app.innerHTML = `
-
-
-    <div class="game-screen">
-
-
-        <div 
-        class="background"
-        id="game-background">
-        </div>
+        const app =
+        document.getElementById("app");
 
 
 
-        <div class="dialogue-box">
+
+
+        app.innerHTML = `
 
 
 
-            ${
-                step.speaker
-                ?
-                `
-                <div class="speaker">
-                    ${step.speaker}
-                </div>
-                `
-                :
-                ""
-            }
+        <div class="game-screen">
 
 
+
+
+
+            <!-- BACKGROUND -->
 
             <div 
-            class="dialogue-text"
-            id="dialogue-text">
+            class="background"
+            style="
+            background-image:url('${step.background || ""}');
+            ">
             </div>
 
 
 
+
+
+
+
+            <!-- DIALOG -->
+
+            <div class="dialogue-box">
+
+
+
+
+
+                ${
+                    step.speaker
+                    ?
+
+                    `
+                    <div class="speaker">
+                    ${step.speaker}
+                    </div>
+                    `
+
+                    :
+
+                    ""
+
+                }
+
+
+
+
+
+
+                <div class="text">
+
+                    ${step.text || ""}
+
+                </div>
+
+
+
+
+
+
+
+                <button 
+                onclick="nextStep()">
+
+                    Далі
+
+                </button>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- HUD -->
+
+            <div class="game-hud">
+
+
+
+                <button onclick="openHistory()">
+
+                    Історія
+
+                </button>
+
+
+
+                <button onclick="toggleAuto()">
+
+                    Авто
+
+                </button>
+
+
+
+                <button onclick="openPauseMenu()">
+
+                    Меню
+
+                </button>
+
+
+
+            </div>
+
+
+
+
+
+
         </div>
 
 
 
-        <button 
-        class="game-button"
-        onclick="nextStep()">
-
-            Далі
-
-        </button>
+        `;
 
 
-
-    </div>
-
-
-
-    `;
-
-
-
-    updateBackground(step);
-
-
-    if(typeof typeText === "function"){
-
-
-        typeText(
-            step.text
-        );
-
-
-    }
-    else{
-
-
-        document
-        .getElementById("dialogue-text")
-        .innerHTML = step.text;
-
-
-    }
-
-
-}
-
-
-
-
-
-
-// =========================
-// BACKGROUND
-// =========================
-
-
-function updateBackground(step){
-
-
-
-    const bg =
-    document.getElementById(
-        "game-background"
-    );
-
-
-
-    if(!bg){
-
-        return;
-
-    }
-
-
-
-    if(step.background){
-
-
-        bg.style.backgroundImage =
-        `url("${step.background}")`;
 
 
     }
 
 
 
-}
+
+
+
+};
