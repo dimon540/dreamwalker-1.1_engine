@@ -11,11 +11,22 @@ console.log("Scene Manager завантажено");
 window.SceneManager = {
 
 
-    currentScene:null,
+    // поточна сцена
 
-    currentStep:0,
+    currentScene: null,
 
 
+    // номер поточного кроку
+
+    currentStep: 0,
+
+
+
+
+
+    // =========================
+    // LOAD SCENE
+    // =========================
 
 
     loadScene(sceneName){
@@ -28,20 +39,29 @@ window.SceneManager = {
 
 
 
+        // перевірка системи сцен
+
         if(!window.scenes){
+
 
             console.error(
                 "Система сцен не завантажена"
             );
 
+
             return;
+
 
         }
 
 
 
+
+
         const scene =
         window.scenes[sceneName];
+
+
 
 
 
@@ -56,7 +76,10 @@ window.SceneManager = {
 
             return;
 
+
         }
+
+
 
 
 
@@ -65,6 +88,8 @@ window.SceneManager = {
 
 
         this.currentStep = 0;
+
+
 
 
 
@@ -78,27 +103,42 @@ window.SceneManager = {
 
 
 
+
+
+
+    // =========================
+    // SHOW STEP
+    // =========================
+
+
     showStep(){
 
 
-        if(
-            !this.currentScene ||
-            !this.currentScene.steps
-        ){
+
+        if(!this.currentScene){
+
 
             console.error(
-                "Немає кроків сцени"
+                "Немає активної сцени"
             );
 
+
             return;
+
 
         }
 
 
 
 
+
+
         const step =
+
         this.currentScene.steps[this.currentStep];
+
+
+
 
 
 
@@ -113,12 +153,43 @@ window.SceneManager = {
 
             return;
 
+
         }
 
 
 
 
-        Renderer.renderScene(step);
+
+
+
+        console.log(
+            "Показ кроку:",
+            this.currentStep
+        );
+
+
+
+
+
+
+
+        if(window.Renderer){
+
+
+            Renderer.renderScene(step);
+
+
+        }
+
+        else{
+
+
+            console.error(
+                "Renderer не знайдено"
+            );
+
+
+        }
 
 
 
@@ -128,10 +199,22 @@ window.SceneManager = {
 
 
 
+
+
+
+
+    // =========================
+    // NEXT STEP
+    // =========================
+
+
     nextStep(){
 
 
+
         this.currentStep++;
+
+
 
 
         this.showStep();
@@ -142,13 +225,21 @@ window.SceneManager = {
 
 
 
+
+
+
 };
 
 
 
 
 
-// глобальна кнопка для HTML
+
+
+// =========================
+// GLOBAL BUTTON
+// =========================
+
 
 function nextStep(){
 
