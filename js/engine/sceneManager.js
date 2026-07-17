@@ -85,7 +85,11 @@ window.SceneManager = {
 
 
         this.currentScene = scene;
+if(window.AudioManager){
 
+    AudioManager.playScene(scene);
+
+}
 
         this.currentStep = 0;
 
