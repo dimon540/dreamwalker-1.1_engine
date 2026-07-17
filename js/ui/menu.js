@@ -172,3 +172,16 @@ function continueGame(){
 
 
 }
+function startMenuAudio(){
+
+
+    if(window.AudioManager){
+
+
+        AudioManager.playMenu();
+
+
+    }
+
+
+}
