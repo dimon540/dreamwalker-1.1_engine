@@ -1,7 +1,6 @@
-// =========================
+// =========================================
 // DREAMWALKER AUDIO SYSTEM
-// FINAL MIX VERSION
-// =========================
+// =========================================
 
 
 console.log("Audio система завантажена");
@@ -9,12 +8,14 @@ console.log("Audio система завантажена");
 
 
 
-// =========================
+
+// =========================================
 // AUDIO FILES
-// =========================
+// =========================================
 
 
 window.audioFiles = {
+
 
 
     music:{
@@ -40,7 +41,9 @@ window.audioFiles = {
         "assets/music/dark_future.mp3"
 
 
+
     },
+
 
 
 
@@ -60,7 +63,9 @@ window.audioFiles = {
         "assets/sounds/ambience/wind.mp3"
 
 
+
     },
+
 
 
 
@@ -76,7 +81,9 @@ window.audioFiles = {
         "assets/sounds/effects/transition.mp3"
 
 
+
     }
+
 
 
 
@@ -89,12 +96,13 @@ window.audioFiles = {
 
 
 
-// =========================
+// =========================================
 // AUDIO STATE
-// =========================
+// =========================================
 
 
 window.audio = {
+
 
 
     music:null,
@@ -106,10 +114,10 @@ window.audio = {
     musicVolume:0.7,
 
 
-    ambienceVolume:0.12,
+    ambienceVolume:0.25,
 
 
-    effectsVolume:0.9
+    effectsVolume:0.8
 
 
 
@@ -123,20 +131,32 @@ window.audio = {
 
 
 
-// =========================
+// =========================================
 // MUSIC
-// =========================
+// =========================================
 
 
 function playMusic(file){
 
 
-    if(!file)
-    return;
-
-
 
     stopMusic();
+
+
+
+
+    if(!file){
+
+        console.error(
+            "Музика не знайдена"
+        );
+
+        return;
+
+    }
+
+
+
 
 
 
@@ -145,7 +165,9 @@ function playMusic(file){
 
 
 
+
     audio.music.loop = true;
+
 
 
     audio.music.volume =
@@ -153,24 +175,11 @@ function playMusic(file){
 
 
 
-   audio.music.play()
 
-.then(()=>{
 
-    console.log(
-        "МУЗИКА УСПІШНО ЗАПУЩЕНА"
-    );
 
-})
+    audio.music.play()
 
-.catch(error=>{
-
-    console.log(
-        "ПОМИЛКА АУДІО:",
-        error
-    );
-
-});
     .then(()=>{
 
 
@@ -182,11 +191,13 @@ function playMusic(file){
 
     })
 
-    .catch(()=>{
+
+    .catch(error=>{
 
 
         console.log(
-            "Музика очікує взаємодії"
+            "Музика очікує взаємодії:",
+            error
         );
 
 
@@ -195,6 +206,7 @@ function playMusic(file){
 
 
 }
+
 
 
 
@@ -218,8 +230,8 @@ function stopMusic(){
         audio.music=null;
 
 
-    }
 
+    }
 
 
 }
@@ -232,12 +244,19 @@ function stopMusic(){
 
 
 
-// =========================
-// MAIN AMBIENCE
-// =========================
+
+
+// =========================================
+// AMBIENCE
+// =========================================
 
 
 function playAmbience(file){
+
+
+
+    stopAmbience();
+
 
 
 
@@ -246,12 +265,12 @@ function playAmbience(file){
 
 
 
-    stopAmbience();
 
 
 
     audio.ambience =
     new Audio(file);
+
 
 
 
@@ -261,6 +280,9 @@ function playAmbience(file){
 
     audio.ambience.volume =
     audio.ambienceVolume;
+
+
+
 
 
 
@@ -277,11 +299,13 @@ function playAmbience(file){
 
     })
 
+
     .catch(()=>{});
 
 
 
 }
+
 
 
 
@@ -305,6 +329,7 @@ function stopAmbience(){
         audio.ambience=null;
 
 
+
     }
 
 
@@ -319,9 +344,11 @@ function stopAmbience(){
 
 
 
-// =========================
-// SHORT SOUNDS
-// =========================
+
+
+// =========================================
+// EFFECTS
+// =========================================
 
 
 function playEffect(file){
@@ -333,8 +360,11 @@ function playEffect(file){
 
 
 
+
+
     const sound =
     new Audio(file);
+
 
 
 
@@ -343,46 +373,6 @@ function playEffect(file){
 
 
 
-    sound.play()
-
-    .catch(()=>{});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =========================
-// TEMPORARY SOUNDS
-// crowd / wind
-// =========================
-
-
-function playAmbienceEffect(file){
-
-
-
-    if(!file)
-    return;
-
-
-
-    const sound =
-    new Audio(file);
-
-
-
-    sound.volume =
-    0.75;
-
-
 
     sound.play()
 
@@ -400,33 +390,9 @@ function playAmbienceEffect(file){
 
 
 
-// =========================
-// MENU
-// =========================
-
-
-function playMenuAudio(){
-
-
-
-    playMusic(
-        audioFiles.music.menu
-    );
-
-
-}
-
-
-
-
-
-
-
-
-
-// =========================
+// =========================================
 // SCENE AUDIO
-// =========================
+// =========================================
 
 
 function playSceneAudio(sceneName){
@@ -435,8 +401,9 @@ function playSceneAudio(sceneName){
 
     stopMusic();
 
-
     stopAmbience();
+
+
 
 
 
@@ -461,7 +428,8 @@ function playSceneAudio(sceneName){
 
 
 
-            break;
+        break;
+
 
 
 
@@ -484,7 +452,8 @@ function playSceneAudio(sceneName){
 
 
 
-            break;
+        break;
+
 
 
 
@@ -494,10 +463,12 @@ function playSceneAudio(sceneName){
         default:
 
 
+
             console.log(
-                "Аудіо сцени відсутнє:",
+                "Аудіо для сцени немає:",
                 sceneName
             );
+
 
 
     }
@@ -514,25 +485,35 @@ function playSceneAudio(sceneName){
 
 
 
-// =========================
-// SETTINGS
-// =========================
+// =========================================
+// VOLUME
+// =========================================
 
 
 function setMusicVolume(value){
 
 
 
-    audio.musicVolume=value;
+    audio.musicVolume =
+    Number(value);
 
 
 
-    if(audio.music)
-    audio.music.volume=value;
+
+    if(audio.music){
+
+
+        audio.music.volume =
+        audio.musicVolume;
+
+
+    }
 
 
 
 }
+
+
 
 
 
@@ -543,16 +524,26 @@ function setAmbienceVolume(value){
 
 
 
-    audio.ambienceVolume=value;
+    audio.ambienceVolume =
+    Number(value);
 
 
 
-    if(audio.ambience)
-    audio.ambience.volume=value;
+
+    if(audio.ambience){
+
+
+        audio.ambience.volume =
+        audio.ambienceVolume;
+
+
+    }
 
 
 
 }
+
+
 
 
 
@@ -563,8 +554,58 @@ function setEffectsVolume(value){
 
 
 
-    audio.effectsVolume=value;
+    audio.effectsVolume =
+    Number(value);
 
 
 
 }
+
+
+
+
+
+
+
+
+// =========================================
+// GLOBAL EXPORT
+// =========================================
+// ВАЖЛИВО ДЛЯ AUDIO MANAGER
+// =========================================
+
+
+window.playMusic =
+playMusic;
+
+
+window.stopMusic =
+stopMusic;
+
+
+window.playAmbience =
+playAmbience;
+
+
+window.stopAmbience =
+stopAmbience;
+
+
+window.playEffect =
+playEffect;
+
+
+window.playSceneAudio =
+playSceneAudio;
+
+
+window.setMusicVolume =
+setMusicVolume;
+
+
+window.setAmbienceVolume =
+setAmbienceVolume;
+
+
+window.setEffectsVolume =
+setEffectsVolume;
