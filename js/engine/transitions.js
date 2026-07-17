@@ -1,21 +1,26 @@
-// =========================
-// DREAMWALKER TRANSITIONS
-// =========================
+// =========================================
+// DREAMWALKER TRANSITIONS SYSTEM
+// =========================================
 
 
 console.log("Transitions система завантажена");
 
 
 
-// =========================
-// FADE OUT
-// =========================
 
 
-function fadeOut(duration = 500){
+window.Transitions = {
 
 
-    return new Promise(resolve => {
+
+
+
+    // =========================
+    // FADE IN
+    // =========================
+
+
+    fadeIn(duration = 800){
 
 
 
@@ -24,28 +29,13 @@ function fadeOut(duration = 500){
 
 
 
-        overlay.id = "transition-overlay";
+        overlay.className =
+        "transition-overlay";
 
 
 
-        overlay.style.position = "fixed";
-
-        overlay.style.left = "0";
-
-        overlay.style.top = "0";
-
-        overlay.style.width = "100%";
-
-        overlay.style.height = "100%";
-
-        overlay.style.background = "black";
-
-        overlay.style.opacity = "0";
-
-        overlay.style.transition =
-        `opacity ${duration}ms ease`;
-
-        overlay.style.zIndex = "9999";
+        overlay.style.opacity =
+        "1";
 
 
 
@@ -58,66 +48,14 @@ function fadeOut(duration = 500){
         setTimeout(()=>{
 
 
-            overlay.style.opacity = "1";
 
-
-        },10);
-
-
-
-        setTimeout(()=>{
-
-
-            resolve();
+            overlay.style.opacity =
+            "0";
 
 
 
-        },duration);
+        },50);
 
-
-
-    });
-
-
-
-}
-
-
-
-
-
-// =========================
-// FADE IN
-// =========================
-
-
-function fadeIn(duration = 500){
-
-
-    return new Promise(resolve => {
-
-
-
-        const overlay =
-        document.getElementById(
-            "transition-overlay"
-        );
-
-
-
-        if(!overlay){
-
-
-            resolve();
-
-            return;
-
-
-        }
-
-
-
-        overlay.style.opacity = "0";
 
 
 
@@ -127,19 +65,11 @@ function fadeIn(duration = 500){
             overlay.remove();
 
 
-            resolve();
+        },duration+100);
 
 
 
-        },duration);
-
-
-
-    });
-
-
-
-}
+    },
 
 
 
@@ -147,146 +77,100 @@ function fadeIn(duration = 500){
 
 
 
-// =========================
-// CHANGE SCENE TRANSITION
-// =========================
+
+    // =========================
+    // FADE OUT
+    // =========================
 
 
-async function sceneTransition(callback){
-
-
-
-    await fadeOut();
+    fadeOut(duration = 800){
 
 
 
-    if(typeof callback === "function"){
+        return new Promise(resolve=>{
 
 
-        callback();
+
+            const overlay =
+            document.createElement("div");
+
+
+
+            overlay.className =
+            "transition-overlay";
+
+
+
+            overlay.style.opacity =
+            "0";
+
+
+
+            document.body.appendChild(
+                overlay
+            );
+
+
+
+
+            setTimeout(()=>{
+
+
+                overlay.style.opacity =
+                "1";
+
+
+
+            },50);
+
+
+
+
+
+            setTimeout(()=>{
+
+
+                resolve();
+
+
+
+            },duration);
+
+
+
+        });
+
 
 
     }
 
 
 
-    await fadeIn();
 
 
-
-}
-
-
+};
 
 
 
 
-// =========================
-// SCREEN SHAKE
-// =========================
-
-
-function shakeScreen(){
 
 
 
-    const app =
-    document.getElementById("app");
+// =========================================
+// GLOBAL
+// =========================================
 
 
+function fadeIn(){
 
-    if(!app){
-
-        return;
-
-    }
-
-
-
-    app.classList.add(
-        "shake"
-    );
-
-
-
-    setTimeout(()=>{
-
-
-        app.classList.remove(
-            "shake"
-        );
-
-
-    },500);
-
-
+    Transitions.fadeIn();
 
 }
 
 
 
+function fadeOut(){
 
-
-
-// =========================
-// FLASH EFFECT
-// =========================
-
-
-function flashScreen(){
-
-
-
-    const flash =
-    document.createElement("div");
-
-
-
-    flash.style.position = "fixed";
-
-    flash.style.left = "0";
-
-    flash.style.top = "0";
-
-    flash.style.width = "100%";
-
-    flash.style.height = "100%";
-
-    flash.style.background = "white";
-
-    flash.style.opacity = "1";
-
-    flash.style.zIndex = "10000";
-
-    flash.style.transition =
-    "opacity 300ms ease";
-
-
-
-    document.body.appendChild(
-        flash
-    );
-
-
-
-    setTimeout(()=>{
-
-
-        flash.style.opacity = "0";
-
-
-    },50);
-
-
-
-    setTimeout(()=>{
-
-
-        flash.remove();
-
-
-    },400);
-
-
+    return Transitions.fadeOut();
 
 }
