@@ -1,5 +1,6 @@
 // =========================
 // DREAMWALKER AUDIO SYSTEM
+// MULTI CHANNEL VERSION
 // =========================
 
 
@@ -102,13 +103,13 @@ window.audio = {
     ambience:null,
 
 
-    effectsVolume:0.8,
-
-
     musicVolume:0.7,
 
 
-    ambienceVolume:0.3
+    ambienceVolume:0.35,
+
+
+    effectsVolume:0.8
 
 
 
@@ -121,8 +122,9 @@ window.audio = {
 
 
 
+
 // =========================
-// MUSIC
+// MUSIC CHANNEL
 // =========================
 
 
@@ -130,15 +132,13 @@ function playMusic(file){
 
 
 
+    if(!file)
+    return;
+
+
+
     stopMusic();
 
-
-
-    if(!file){
-
-        return;
-
-    }
 
 
 
@@ -169,12 +169,11 @@ function playMusic(file){
     })
 
 
-    .catch(error=>{
+    .catch(()=>{
 
 
         console.log(
-            "Музика очікує взаємодії користувача",
-            error
+            "Музика очікує взаємодії"
         );
 
 
@@ -189,12 +188,12 @@ function playMusic(file){
 
 
 
+
 function stopMusic(){
 
 
 
     if(audio.music){
-
 
 
         audio.music.pause();
@@ -204,7 +203,6 @@ function stopMusic(){
 
 
         audio.music = null;
-
 
 
     }
@@ -220,8 +218,9 @@ function stopMusic(){
 
 
 
+
 // =========================
-// AMBIENCE
+// AMBIENCE CHANNEL
 // =========================
 
 
@@ -229,15 +228,13 @@ function playAmbience(file){
 
 
 
+    if(!file)
+    return;
+
+
+
     stopAmbience();
 
-
-
-    if(!file){
-
-        return;
-
-    }
 
 
 
@@ -251,6 +248,7 @@ function playAmbience(file){
 
     audio.ambience.volume =
     audio.ambienceVolume;
+
 
 
 
@@ -311,8 +309,9 @@ function stopAmbience(){
 
 
 
+
 // =========================
-// EFFECTS
+// SHORT SOUNDS
 // =========================
 
 
@@ -320,11 +319,9 @@ function playEffect(file){
 
 
 
-    if(!file){
+    if(!file)
+    return;
 
-        return;
-
-    }
 
 
 
@@ -353,13 +350,55 @@ function playEffect(file){
 
 
 
+
 // =========================
-// MENU AUDIO
+// TEMPORARY AMBIENCE FX
+// =========================
+// crowd, wind etc.
+// не выключают city.mp3
+
+
+function playAmbienceEffect(file){
+
+
+
+    if(!file)
+    return;
+
+
+
+    const sound =
+    new Audio(file);
+
+
+
+    sound.volume =
+    audio.effectsVolume * 0.7;
+
+
+
+    sound.play()
+
+    .catch(()=>{});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =========================
+// MENU
 // =========================
 
 
 function playMenuAudio(){
-
 
 
     playMusic(
@@ -368,6 +407,7 @@ function playMenuAudio(){
 
 
 }
+
 
 
 
@@ -386,6 +426,7 @@ function playSceneAudio(sceneName){
 
 
     stopMusic();
+
 
     stopAmbience();
 
@@ -418,6 +459,7 @@ function playSceneAudio(sceneName){
 
 
 
+
         case "scene2":
 
 
@@ -440,15 +482,14 @@ function playSceneAudio(sceneName){
 
 
 
+
         default:
 
 
-
             console.log(
-                "Для сцени немає аудіо:",
+                "Аудіо сцени не знайдено:",
                 sceneName
             );
-
 
 
     }
@@ -464,8 +505,9 @@ function playSceneAudio(sceneName){
 
 
 
+
 // =========================
-// VOLUME SETTINGS
+// VOLUME
 // =========================
 
 
@@ -478,14 +520,8 @@ function setMusicVolume(value){
 
 
 
-    if(audio.music){
-
-
-        audio.music.volume =
-        value;
-
-
-    }
+    if(audio.music)
+    audio.music.volume=value;
 
 
 
@@ -505,14 +541,8 @@ function setAmbienceVolume(value){
 
 
 
-    if(audio.ambience){
-
-
-        audio.ambience.volume =
-        value;
-
-
-    }
+    if(audio.ambience)
+    audio.ambience.volume=value;
 
 
 
