@@ -1,7 +1,7 @@
 // =========================================
 // DREAMWALKER ENGINE 1.0
 // RENDERER SYSTEM
-// AUDIO SUPPORT
+// DIALOGUE + AUDIO SUPPORT
 // =========================================
 
 
@@ -26,6 +26,8 @@ window.Renderer = {
 
 
 
+
+
         // =========================
         // STEP SOUND
         // =========================
@@ -46,7 +48,7 @@ window.Renderer = {
 
 
         // =========================
-        // TRANSITION
+        // TRANSITION SOUND
         // =========================
 
 
@@ -65,8 +67,11 @@ window.Renderer = {
 
 
 
+
         const app =
         document.getElementById("app");
+
+
 
 
 
@@ -82,7 +87,9 @@ window.Renderer = {
 
 
 
-            <div 
+            <!-- BACKGROUND -->
+
+            <div
             class="background"
             style="
             background-image:url('${step.background || ""}');
@@ -94,6 +101,8 @@ window.Renderer = {
 
 
 
+
+            <!-- DIALOG -->
 
             <div class="dialogue-box">
 
@@ -114,6 +123,7 @@ window.Renderer = {
                     :
 
                     step.speaker
+
                     ?
 
                     `
@@ -134,10 +144,7 @@ window.Renderer = {
 
 
 
-
                 <div class="text">
-
-                    ${step.text || ""}
 
                 </div>
 
@@ -148,7 +155,7 @@ window.Renderer = {
 
 
                 <button 
-                onclick="nextStep()">
+                onclick="dialogueNext()">
 
                     Далі
 
@@ -167,6 +174,9 @@ window.Renderer = {
 
 
 
+
+
+            <!-- HUD -->
 
             <div class="game-hud">
 
@@ -212,11 +222,68 @@ window.Renderer = {
 
 
 
+
+
+        // =========================
+        // START TYPEWRITER
+        // =========================
+
+
+        if(
+            window.Dialogue &&
+            typeof Dialogue.showText === "function"
+        ){
+
+
+            Dialogue.showText(
+                step.text
+            );
+
+
+        }
+
+
+
     }
 
 
 
 
 
-
 };
+
+
+
+
+
+
+
+// =========================================
+// NEXT BUTTON LOGIC
+// =========================================
+
+
+function dialogueNext(){
+
+
+
+    // якщо текст ще друкується
+    // перший клік показує весь текст
+
+
+    if(
+        window.Dialogue &&
+        Dialogue.skip()
+    ){
+
+        return;
+
+    }
+
+
+
+    nextStep();
+
+
+
+}
