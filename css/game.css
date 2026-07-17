@@ -630,3 +630,101 @@
 
 
 }
+/* =========================================
+   CAMERA EFFECTS
+========================================= */
+
+
+.background{
+
+
+    transition:
+
+    transform 2s ease;
+
+
+}
+
+
+
+
+.camera-close{
+
+
+    transform:
+
+    scale(1.12);
+
+
+}
+
+
+
+
+.camera-far{
+
+
+    transform:
+
+    scale(1);
+
+
+}
+
+
+
+
+.camera-shake{
+
+
+animation:
+
+shakeCamera 0.4s infinite;
+
+
+}
+
+
+
+
+
+
+@keyframes shakeCamera{
+
+
+0%{
+
+transform:translate(0,0);
+
+}
+
+
+25%{
+
+transform:translate(-5px,3px);
+
+}
+
+
+50%{
+
+transform:translate(5px,-3px);
+
+}
+
+
+75%{
+
+transform:translate(-3px,-2px);
+
+}
+
+
+100%{
+
+transform:translate(0,0);
+
+}
+
+
+}
