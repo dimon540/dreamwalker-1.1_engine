@@ -1,9 +1,11 @@
 // =========================
-// DREAMWALKER GAME ENGINE
+// DREAMWALKER GAME ENGINE 1.0
+// GAME CORE
 // =========================
 
 
 console.log("Ігровий рушій завантажено");
+
 
 
 
@@ -15,20 +17,23 @@ console.log("Ігровий рушій завантажено");
 window.game = {
 
 
-    currentScene: null,
+    currentScene:null,
 
 
-    currentStep: 0,
+    currentStep:0,
 
 
-    playing: false,
+    playing:false,
 
 
-    paused: false
-
+    paused:false
 
 
 };
+
+
+
+
 
 
 
@@ -40,10 +45,13 @@ window.game = {
 function startGame(){
 
 
-    console.log("Гра запускається");
+    console.log(
+        "Гра запускається"
+    );
 
 
     game.playing = true;
+
 
 
     if(typeof openMainMenu === "function"){
@@ -69,6 +77,11 @@ function startGame(){
 
 
 
+
+
+
+
+
 // =========================
 // START SCENE
 // =========================
@@ -82,6 +95,8 @@ function startScene(sceneName){
         "Запуск сцени:",
         sceneName
     );
+
+
 
 
 
@@ -100,12 +115,17 @@ function startScene(sceneName){
 
 
 
-    const scene =
+
+
+
+    game.currentScene =
     window.scenes[sceneName];
 
 
 
-    if(!scene){
+
+
+    if(!game.currentScene){
 
 
         console.error(
@@ -121,29 +141,39 @@ function startScene(sceneName){
 
 
 
-    game.currentScene = scene;
+
+
 
 
     game.currentStep = 0;
-
 
 
     game.playing = true;
 
 
 
-    if(typeof loadScene === "function"){
 
 
-        loadScene();
+
+
+    // передаємо сцену менеджеру
+
+
+    if(window.SceneManager){
+
+
+        SceneManager.loadScene(
+            sceneName
+        );
 
 
     }
+
     else{
 
 
         console.error(
-            "Scene Manager не знайдено"
+            "SceneManager не знайдено"
         );
 
 
@@ -152,6 +182,9 @@ function startScene(sceneName){
 
 
 }
+
+
+
 
 
 
@@ -167,43 +200,10 @@ function nextStep(){
 
 
 
-    if(!game.currentScene){
+    if(window.SceneManager){
 
 
-        console.error(
-            "Немає активної сцени"
-        );
-
-
-        return;
-
-
-    }
-
-
-
-    game.currentStep++;
-
-
-
-
-    if(
-        game.currentStep
-        <
-        game.currentScene.steps.length
-    ){
-
-
-        if(typeof renderStep === "function"){
-
-
-            renderStep(
-                game.currentScene.steps[game.currentStep]
-            );
-
-
-        }
-
+        SceneManager.nextStep();
 
 
     }
@@ -211,7 +211,9 @@ function nextStep(){
     else{
 
 
-        endScene();
+        console.error(
+            "SceneManager не знайдено"
+        );
 
 
     }
@@ -219,6 +221,9 @@ function nextStep(){
 
 
 }
+
+
+
 
 
 
@@ -240,19 +245,19 @@ function endScene(){
 
 
 
-    game.playing = false;
+    game.playing=false;
+
+
+    game.currentScene=null;
+
+
+    game.currentStep=0;
 
 
 
-    game.currentScene = null;
 
 
-
-    game.currentStep = 0;
-
-
-
-    if(typeof openChapterMenu === "function"){
+    if(typeof openChapterMenu==="function"){
 
 
         openChapterMenu();
@@ -269,6 +274,8 @@ function endScene(){
 
 
 
+
+
 // =========================
 // PAUSE
 // =========================
@@ -277,7 +284,7 @@ function endScene(){
 function pauseGame(){
 
 
-    game.paused = true;
+    game.paused=true;
 
 
     console.log(
@@ -290,10 +297,12 @@ function pauseGame(){
 
 
 
+
+
 function resumeGame(){
 
 
-    game.paused = false;
+    game.paused=false;
 
 
     console.log(
