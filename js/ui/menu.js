@@ -14,7 +14,11 @@ console.log("Menu система завантажена");
 
 
 function openMainMenu(){
+if(window.AudioManager){
 
+    AudioManager.playMenu();
+
+}
 
     const app =
     document.getElementById("app");
