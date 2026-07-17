@@ -46,11 +46,9 @@ if(window.AudioManager){
 
 
 
-            <button onclick="newGame()">
-
-                Нова гра
-
-            </button>
+           <button onclick="startMenuAudio(); newGame()">
+Нова гра
+</button>
 
 
 
