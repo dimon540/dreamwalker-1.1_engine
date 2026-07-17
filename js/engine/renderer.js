@@ -1,6 +1,7 @@
 // =========================================
 // DREAMWALKER ENGINE 1.0
 // RENDERER SYSTEM
+// AUDIO SUPPORT
 // =========================================
 
 
@@ -14,8 +15,6 @@ window.Renderer = {
 
 
 
-
-
     renderScene(step){
 
 
@@ -24,6 +23,44 @@ window.Renderer = {
             "Відображення кроку:",
             step
         );
+
+
+
+        // =========================
+        // STEP SOUND
+        // =========================
+
+
+        if(
+            step.sound &&
+            typeof playAmbienceEffect === "function"
+        ){
+
+            playAmbienceEffect(
+                step.sound
+            );
+
+        }
+
+
+
+
+        // =========================
+        // TRANSITION
+        // =========================
+
+
+        if(
+            step.transition &&
+            typeof playEffect === "function"
+        ){
+
+            playEffect(
+                step.transition
+            );
+
+        }
+
 
 
 
@@ -45,8 +82,6 @@ window.Renderer = {
 
 
 
-            <!-- BACKGROUND -->
-
             <div 
             class="background"
             style="
@@ -60,8 +95,6 @@ window.Renderer = {
 
 
 
-            <!-- DIALOG -->
-
             <div class="dialogue-box">
 
 
@@ -69,6 +102,17 @@ window.Renderer = {
 
 
                 ${
+                    step.name
+                    ?
+
+                    `
+                    <div class="speaker">
+                    Єва
+                    </div>
+                    `
+
+                    :
+
                     step.speaker
                     ?
 
@@ -83,6 +127,8 @@ window.Renderer = {
                     ""
 
                 }
+
+
 
 
 
@@ -121,8 +167,6 @@ window.Renderer = {
 
 
 
-
-            <!-- HUD -->
 
             <div class="game-hud">
 
