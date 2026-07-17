@@ -17,7 +17,13 @@ window.Renderer = {
 
     renderScene(step){
 
+if(
+window.Transitions
+){
 
+Transitions.fadeIn();
+
+}
 
         console.log(
             "Відображення кроку:",
