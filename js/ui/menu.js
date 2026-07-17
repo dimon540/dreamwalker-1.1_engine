@@ -192,3 +192,16 @@ function startMenuAudio(){
 
 
 }
+function startMenuMusic(){
+
+
+    if(window.AudioManager){
+
+
+        AudioManager.playMenu();
+
+
+    }
+
+
+}
