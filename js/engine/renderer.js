@@ -1,7 +1,7 @@
 // =========================================
-// DREAMWALKER ENGINE 1.0
+// DREAMWALKER ENGINE
 // RENDERER SYSTEM
-// DIALOGUE + AUDIO SUPPORT
+// CAMERA + AUDIO + TYPEWRITER
 // =========================================
 
 
@@ -11,246 +11,253 @@ console.log("Renderer завантажено");
 
 
 
+let typingTimer = null;
+
+let currentText = "";
+
+
+
+
+
+
 window.Renderer = {
 
 
 
-    renderScene(step){
+renderScene(step){
+
+
+
+console.log(
+"Відображення кроку:",
+step
+);
+
+
+
+
+
+// =========================
+// AUDIO
+// =========================
+
 
 if(
-window.Transitions
+step.sound &&
+typeof playAmbienceEffect === "function"
 ){
 
-Transitions.fadeIn();
+playAmbienceEffect(
+step.sound
+);
 
 }
 
-        console.log(
-            "Відображення кроку:",
-            step
-        );
 
 
 
 
+if(
+step.transition &&
+typeof playEffect === "function"
+){
 
-        // =========================
-        // STEP SOUND
-        // =========================
+playEffect(
+step.transition
+);
 
+}
 
-        if(
-            step.sound &&
-            typeof playAmbienceEffect === "function"
-        ){
 
-            playAmbienceEffect(
-                step.sound
-            );
 
-        }
 
 
+// =========================
+// HTML
+// =========================
 
 
-        // =========================
-        // TRANSITION SOUND
-        // =========================
+const app =
+document.getElementById("app");
 
 
-        if(
-            step.transition &&
-            typeof playEffect === "function"
-        ){
 
-            playEffect(
-                step.transition
-            );
 
-        }
 
+app.innerHTML = `
 
 
 
+<div class="game-screen">
 
 
-        const app =
-        document.getElementById("app");
 
 
 
+<div 
+class="background"
+style="
+background-image:url('${step.background || ""}');
+">
+</div>
 
 
 
 
-        app.innerHTML = `
 
 
 
-        <div class="game-screen">
+<div class="dialogue-box">
 
 
 
 
 
-            <!-- BACKGROUND -->
+${
+step.name
 
-            <div
-            class="background"
-            style="
-            background-image:url('${step.background || ""}');
-            ">
-            </div>
+?
 
+`
+<div class="speaker">
+Єва
+</div>
+`
 
+:
 
+step.speaker
 
+?
 
+`
+<div class="speaker">
+${step.speaker}
+</div>
+`
 
+:
 
-            <!-- DIALOG -->
+""
 
-            <div class="dialogue-box">
+}
 
 
 
 
 
-                ${
-                    step.name
-                    ?
 
-                    `
-                    <div class="speaker">
-                    Єва
-                    </div>
-                    `
 
-                    :
+<div class="text" id="dialogueText">
 
-                    step.speaker
+</div>
 
-                    ?
 
-                    `
-                    <div class="speaker">
-                    ${step.speaker}
-                    </div>
-                    `
 
-                    :
 
-                    ""
 
-                }
 
+<button onclick="dialogueNext()">
 
+Далі
 
+</button>
 
 
 
 
-                <div class="text">
 
-                </div>
 
+</div>
 
 
 
 
 
 
-                <button 
-                onclick="dialogueNext()">
 
-                    Далі
 
-                </button>
+<div class="game-hud">
 
 
+<button onclick="openHistory()">
 
+Історія
 
+</button>
 
 
+<button onclick="toggleAuto()">
 
-            </div>
+Авто
 
+</button>
 
 
+<button onclick="openPauseMenu()">
 
+Меню
 
+</button>
 
 
+</div>
 
-            <!-- HUD -->
 
-            <div class="game-hud">
 
 
 
-                <button onclick="openHistory()">
 
-                    Історія
 
-                </button>
+</div>
 
 
 
-                <button onclick="toggleAuto()">
+`;
 
-                    Авто
 
-                </button>
 
 
 
-                <button onclick="openPauseMenu()">
 
-                    Меню
 
-                </button>
 
+// =========================
+// CAMERA
+// =========================
 
 
-            </div>
+if(
+window.Camera
+){
 
+Camera.apply(
+step.camera
+);
 
 
+}
 
 
 
-        </div>
 
 
 
-        `;
+// =========================
+// TEXT
+// =========================
 
 
+startTyping(
+step.text || ""
+);
 
 
 
 
-        // =========================
-        // START TYPEWRITER
-        // =========================
 
 
-        if(
-            window.Dialogue &&
-            typeof Dialogue.showText === "function"
-        ){
-
-
-            Dialogue.showText(
-                step.text
-            );
-
-
-        }
-
-
-
-    }
+}
 
 
 
@@ -264,31 +271,152 @@ Transitions.fadeIn();
 
 
 
+
+
 // =========================================
-// NEXT BUTTON LOGIC
+// TYPEWRITER
 // =========================================
+
+
+function startTyping(text){
+
+
+
+clearInterval(
+typingTimer
+);
+
+
+
+currentText=text;
+
+
+
+let index=0;
+
+
+
+const box =
+document.getElementById(
+"dialogueText"
+);
+
+
+
+if(!box)
+return;
+
+
+
+box.innerHTML="";
+
+
+
+typingTimer =
+setInterval(()=>{
+
+
+box.innerHTML +=
+text[index];
+
+
+index++;
+
+
+
+
+if(index >= text.length){
+
+
+clearInterval(
+typingTimer
+);
+
+
+}
+
+
+},35);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function skipTyping(){
+
+
+
+clearInterval(
+typingTimer
+);
+
+
+
+const box =
+document.getElementById(
+"dialogueText"
+);
+
+
+
+if(box){
+
+
+box.innerHTML =
+currentText;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
 
 
 function dialogueNext(){
 
 
 
-    // якщо текст ще друкується
-    // перший клік показує весь текст
-
-
-    if(
-        window.Dialogue &&
-        Dialogue.skip()
-    ){
-
-        return;
-
-    }
+const box =
+document.getElementById(
+"dialogueText"
+);
 
 
 
-    nextStep();
+if(
+box &&
+box.innerHTML.length <
+currentText.length
+){
+
+
+skipTyping();
+
+
+return;
+
+
+}
+
+
+
+nextStep();
 
 
 
