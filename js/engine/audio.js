@@ -153,8 +153,24 @@ function playMusic(file){
 
 
 
-    audio.music.play()
+   audio.music.play()
 
+.then(()=>{
+
+    console.log(
+        "МУЗИКА УСПІШНО ЗАПУЩЕНА"
+    );
+
+})
+
+.catch(error=>{
+
+    console.log(
+        "ПОМИЛКА АУДІО:",
+        error
+    );
+
+});
     .then(()=>{
 
 
