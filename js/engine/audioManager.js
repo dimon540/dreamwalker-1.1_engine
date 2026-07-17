@@ -48,34 +48,67 @@ window.AudioManager = {
 
 
 
-    // =====================
-    // SCENE AUDIO
-    // =====================
+   // =====================
+// SCENE AUDIO
+// =====================
 
 
-    playScene(sceneName){
+playScene(scene){
+
+
+    console.log(
+        "Аудіо сцени:",
+        scene
+    );
 
 
 
-        console.log(
-            "Аудіо сцени:",
-            sceneName
+    if(scene.music){
+
+
+        playMusic(
+            scene.music
         );
 
 
+    }
 
-        playSceneAudio(
-            sceneName
+
+
+    if(scene.ambience){
+
+
+        playAmbience(
+            scene.ambience
         );
 
 
-
-    },
-
+    }
 
 
 
+},
 
+
+
+
+playSound(sound){
+
+
+
+    if(sound){
+
+
+        playEffect(
+            sound
+        );
+
+
+    }
+
+
+
+},
 
 
     // =====================
