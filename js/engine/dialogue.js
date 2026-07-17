@@ -1,184 +1,164 @@
-// =========================
+// =========================================
 // DREAMWALKER DIALOGUE SYSTEM
-// =========================
+// TYPEWRITER ENGINE
+// =========================================
 
 
 console.log("Dialogue система завантажена");
 
 
 
-// =========================
-// VARIABLES
-// =========================
 
 
-let dialogueTimer = null;
-
-let isTyping = false;
-
-let currentText = "";
-
-let textPosition = 0;
+window.Dialogue = {
 
 
 
+    typing:false,
 
 
-// =========================
-// TYPE TEXT
-// =========================
+    timer:null,
 
 
-function typeText(text){
-
-
-
-    const box =
-    document.getElementById(
-        "dialogue-text"
-    );
+    currentText:"",
 
 
 
-    if(!box){
 
-        console.error(
-            "Вікно тексту не знайдено"
-        );
 
+    // =========================
+    // START TEXT
+    // =========================
+
+
+    showText(text){
+
+
+        this.currentText = text || "";
+
+
+        this.typing = true;
+
+
+
+        const box =
+        document.querySelector(".text");
+
+
+
+        if(!box)
         return;
 
-    }
+
+
+        box.innerHTML = "";
 
 
 
-    clearInterval(dialogueTimer);
+        let index = 0;
 
 
 
-    currentText = text || "";
-
-    textPosition = 0;
-
-
-
-    box.innerHTML = "";
+        clearInterval(
+            this.timer
+        );
 
 
 
-    isTyping = true;
+        this.timer =
+        setInterval(()=>{
 
 
 
-    dialogueTimer = setInterval(()=>{
-
-
-        box.innerHTML +=
-        currentText[textPosition];
+            box.innerHTML +=
+            this.currentText[index];
 
 
 
-        textPosition++;
+            index++;
 
 
 
-        if(
-            textPosition >=
-            currentText.length
-        ){
+
+            if(index >= this.currentText.length){
 
 
-            finishTyping();
+
+                clearInterval(
+                    this.timer
+                );
+
+
+                this.typing=false;
+
+
+
+            }
+
+
+
+        },40);
+
+
+
+    },
+
+
+
+
+
+
+
+    // =========================
+    // SKIP TEXT
+    // =========================
+
+
+    skip(){
+
+
+
+        if(!this.typing)
+        return false;
+
+
+
+
+        clearInterval(
+            this.timer
+        );
+
+
+
+        const box =
+        document.querySelector(".text");
+
+
+
+        if(box){
+
+
+            box.innerHTML =
+            this.currentText;
 
 
         }
 
 
 
-    },45);
-
-
-
-}
-
-
-
-
-
-
-
-// =========================
-// FINISH TYPING
-// =========================
-
-
-function finishTyping(){
-
-
-
-    clearInterval(
-        dialogueTimer
-    );
-
-
-
-    const box =
-    document.getElementById(
-        "dialogue-text"
-    );
-
-
-
-    if(box){
-
-
-        box.innerHTML =
-        currentText;
-
-
-    }
-
-
-
-    isTyping = false;
-
-
-
-}
-
-
-
-
-
-
-// =========================
-// SKIP TYPING
-// =========================
-
-
-function skipTyping(){
-
-
-
-    if(isTyping){
-
-
-        finishTyping();
+        this.typing=false;
 
 
 
         return true;
 
 
+
     }
 
 
 
-    return false;
-
-
-
-}
+};
 
 
 
@@ -186,40 +166,16 @@ function skipTyping(){
 
 
 // =========================
-// CLEAR DIALOGUE
+// GLOBAL FUNCTION
 // =========================
 
 
-function clearDialogue(){
+function showDialogue(text){
 
 
-
-    clearInterval(
-        dialogueTimer
+    Dialogue.showText(
+        text
     );
-
-
-
-    const box =
-    document.getElementById(
-        "dialogue-text"
-    );
-
-
-
-    if(box){
-
-
-        box.innerHTML =
-        "";
-
-
-    }
-
-
-
-    isTyping = false;
-
 
 
 }
