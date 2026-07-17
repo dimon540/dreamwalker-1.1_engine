@@ -1,158 +1,159 @@
-// =========================
-// DREAMWALKER SCENE MANAGER
-// =========================
+// =========================================
+// DREAMWALKER ENGINE 1.0
+// SCENE MANAGER
+// =========================================
 
 
 console.log("Scene Manager завантажено");
 
 
 
-// =========================
-// LOAD SCENE
-// =========================
+window.SceneManager = {
 
 
-function loadScene(){
+    currentScene:null,
 
-
-    console.log(
-        "Завантаження сцени"
-    );
+    currentStep:0,
 
 
 
-    if(!game.currentScene){
+
+    loadScene(sceneName){
 
 
-        console.error(
-            "Немає активної сцени"
+        console.log(
+            "Завантаження сцени:",
+            sceneName
         );
 
 
-        return;
+
+        if(!window.scenes){
+
+            console.error(
+                "Система сцен не завантажена"
+            );
+
+            return;
+
+        }
+
+
+
+        const scene =
+        window.scenes[sceneName];
+
+
+
+        if(!scene){
+
+
+            console.error(
+                "Сцена не знайдена:",
+                sceneName
+            );
+
+
+            return;
+
+        }
+
+
+
+
+        this.currentScene = scene;
+
+
+        this.currentStep = 0;
+
+
+
+        this.showStep();
+
+
+
+    },
+
+
+
+
+
+    showStep(){
+
+
+        if(
+            !this.currentScene ||
+            !this.currentScene.steps
+        ){
+
+            console.error(
+                "Немає кроків сцени"
+            );
+
+            return;
+
+        }
+
+
+
+
+        const step =
+        this.currentScene.steps[this.currentStep];
+
+
+
+
+        if(!step){
+
+
+            console.log(
+                "Сцена завершена"
+            );
+
+
+            return;
+
+        }
+
+
+
+
+        Renderer.renderScene(step);
+
+
+
+    },
+
+
+
+
+
+    nextStep(){
+
+
+        this.currentStep++;
+
+
+        this.showStep();
+
 
 
     }
 
 
 
-    game.currentStep = 0;
+};
 
 
 
-    const step =
-    game.currentScene.steps[0];
 
 
+// глобальна кнопка для HTML
 
-    if(!step){
+function nextStep(){
 
 
-        console.error(
-            "Сцена не має кроків"
-        );
-
-
-        return;
-
-
-    }
-
-
-
-    renderStep(step);
-
-
-
-}
-
-
-
-
-
-
-// =========================
-// GET CURRENT STEP
-// =========================
-
-
-function getCurrentStep(){
-
-
-
-    if(!game.currentScene){
-
-
-        return null;
-
-
-    }
-
-
-
-    return game.currentScene.steps[
-        game.currentStep
-    ];
-
-
-
-}
-
-
-
-
-
-
-// =========================
-// CHECK SCENE END
-// =========================
-
-
-function isSceneFinished(){
-
-
-
-    if(!game.currentScene){
-
-
-        return true;
-
-
-    }
-
-
-
-    return (
-        game.currentStep >=
-        game.currentScene.steps.length
-    );
-
-
-}
-
-
-
-
-
-
-// =========================
-// CHANGE SCENE
-// =========================
-
-
-function changeScene(sceneName){
-
-
-
-    console.log(
-        "Перехід до сцени:",
-        sceneName
-    );
-
-
-
-    startScene(sceneName);
-
+    SceneManager.nextStep();
 
 
 }
