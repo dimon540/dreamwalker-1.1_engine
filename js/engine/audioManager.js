@@ -27,23 +27,23 @@ window.AudioManager = {
     playMenu(){
 
 
+    if(
+        audio.music &&
+        !audio.music.paused
+    ){
 
-        console.log(
-            "Запуск музики меню"
-        );
+        return;
 
-
-
-        playMusic(
-            audioFiles.music.menu
-        );
+    }
 
 
 
-    },
+    playMusic(
+        audioFiles.music.menu
+    );
 
 
-
+}
 
 
 
