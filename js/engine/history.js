@@ -1,6 +1,6 @@
-// =========================
+// =========================================
 // DREAMWALKER HISTORY SYSTEM
-// =========================
+// =========================================
 
 
 console.log("History система завантажена");
@@ -8,26 +8,26 @@ console.log("History система завантажена");
 
 
 
-// =========================
-// HISTORY DATA
-// =========================
+// =========================================
+// LOAD HISTORY
+// =========================================
 
 
-window.dialogueHistory = 
-JSON.parse(
+window.dialogueHistory = JSON.parse(
+
     localStorage.getItem("dialogueHistory")
+
 ) || [];
 
 
 
 
-// =========================
-// ADD DIALOGUE
-// =========================
+// =========================================
+// ADD HISTORY ENTRY
+// =========================================
 
 
 window.addToHistory = function(step){
-
 
 
     if(!step || !step.text){
@@ -38,7 +38,20 @@ window.addToHistory = function(step){
 
 
 
+    // якщо тип не заданий
+    // вважаємо думкою
+
+    let type =
+    step.type || "thought";
+
+
+
+
+
     dialogueHistory.push({
+
+
+        type:type,
 
 
         speaker:
@@ -52,10 +65,15 @@ window.addToHistory = function(step){
 
 
         scene:
-        game.currentScene || null
+
+        SceneManager.currentScene || null
+
 
 
     });
+
+
+
 
 
 
@@ -76,9 +94,9 @@ window.addToHistory = function(step){
 
 
 
-// =========================
+// =========================================
 // GET HISTORY
-// =========================
+// =========================================
 
 
 window.getHistory = function(){
@@ -94,9 +112,9 @@ window.getHistory = function(){
 
 
 
-// =========================
+// =========================================
 // CLEAR HISTORY
-// =========================
+// =========================================
 
 
 window.clearHistory = function(){
@@ -106,7 +124,9 @@ window.clearHistory = function(){
 
 
     localStorage.removeItem(
+
         "dialogueHistory"
+
     );
 
 
@@ -117,23 +137,21 @@ window.clearHistory = function(){
 
 
 
-// =========================
-// SHOW HISTORY DEBUG
-// =========================
+// =========================================
+// DEBUG
+// =========================================
 
 
 window.showHistory = function(){
 
 
-
     console.log(
 
-        "Історія діалогів:",
+        "Історія:",
 
         dialogueHistory
 
     );
-
 
 
 };
