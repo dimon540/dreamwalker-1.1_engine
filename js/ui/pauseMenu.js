@@ -12,13 +12,18 @@ console.log("Pause Menu завантажено");
 function openPauseMenu(){
 
 
-    const app = document.getElementById("app");
+    console.log("Відкрито меню паузи");
 
 
-    app.innerHTML += `
+
+    const popup = document.createElement("div");
 
 
-    <div class="popup-overlay">
+    popup.className = "popup-overlay";
+
+
+
+    popup.innerHTML = `
 
 
         <div class="popup-window">
@@ -30,13 +35,17 @@ function openPauseMenu(){
 
 
 
+
             <button 
             class="back-button"
             onclick="closePauseMenu()">
 
+
                 Повернутися
 
+
             </button>
+
 
 
 
@@ -44,7 +53,11 @@ function openPauseMenu(){
             class="back-button"
             onclick="openMainMenu()">
 
+
+
                 Головне меню
+
+
 
             </button>
 
@@ -53,13 +66,17 @@ function openPauseMenu(){
         </div>
 
 
-    </div>
-
 
     `;
 
 
+
+    document.body.appendChild(popup);
+
+
+
 }
+
 
 
 
@@ -74,9 +91,12 @@ function closePauseMenu(){
     document.querySelector(".popup-overlay");
 
 
+
     if(popup){
 
+
         popup.remove();
+
 
     }
 
