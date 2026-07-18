@@ -46,7 +46,9 @@ function openMainMenu(){
             DREAMWALKER
 
         </div>
-
+<div class="background-title">
+    DREAMWALKER
+</div>
         <div class="menu-buttons">
 
             <button onclick="startMenuAudio(); newGame();">
