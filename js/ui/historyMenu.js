@@ -184,3 +184,14 @@ function openHistory(){
 
 
 }
+// =========================
+// IN GAME HISTORY BUTTON
+// =========================
+
+function openHistory(){
+
+    console.log("Відкриття історії під час гри");
+
+    openHistoryMenu();
+
+}
