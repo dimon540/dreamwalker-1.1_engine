@@ -1,16 +1,18 @@
 /* =====================================
-   DREAMWALKER MENU STYLE
+   DREAMWALKER MENU SYSTEM
 ===================================== */
 
 
-/* GLOBAL */
+/* ===============================
+   MAIN / SUB MENU BASE
+================================ */
+
 
 .main-menu,
 .sub-menu {
 
 
     width:100%;
-
     height:100vh;
 
 
@@ -23,22 +25,29 @@
     align-items:center;
 
 
+
+    position:relative;
+
+    overflow:hidden;
+
+
+
     background:
 
 
-    linear-gradient(
-        rgba(5,10,25,0.75),
+    radial-gradient(
+        circle at center,
+        rgba(0,120,255,0.15),
         rgba(0,0,0,0.95)
     );
 
 
-    color:white;
 
+    color:white;
 
     font-family:Arial, sans-serif;
 
 
-    overflow:hidden;
 
 }
 
@@ -46,32 +55,78 @@
 
 
 
-/* TITLE */
-
-.game-title{
-
-
-    font-size:70px;
+/* ===============================
+   BACKGROUND DREAMWALKER LOGO
+================================ */
 
 
-    letter-spacing:12px;
+.background-title{
 
 
-    color:#8be9ff;
+    position:absolute;
+
+
+    top:50%;
+
+    left:50%;
+
+
+
+    transform:
+
+    translate(-50%, -50%);
+
+
+
+    font-size:160px;
+
+
+    letter-spacing:35px;
+
+
+    font-weight:900;
+
+
+
+    white-space:nowrap;
+
+
+
+    color:
+
+    rgba(0,220,255,0.08);
+
 
 
     text-shadow:
 
 
-    0 0 10px #00d9ff,
 
-    0 0 30px #0066ff;
+    0 0 40px
 
-
-    margin-bottom:60px;
+    rgba(0,180,255,0.25),
 
 
-    animation:titleGlow 3s infinite alternate;
+
+    0 0 100px
+
+    rgba(0,120,255,0.2);
+
+
+
+
+    z-index:0;
+
+
+
+    user-select:none;
+
+
+
+    animation:
+
+    logoPulse 6s infinite alternate;
+
 
 
 }
@@ -79,24 +134,41 @@
 
 
 
-@keyframes titleGlow{
+
+
+@keyframes logoPulse{
 
 
 from{
 
-    text-shadow:
 
-    0 0 10px #00d9ff;
+    opacity:0.4;
+
+
+    transform:
+
+    translate(-50%, -50%)
+
+    scale(1);
+
+
 
 }
+
 
 
 to{
 
 
-    text-shadow:
+    opacity:1;
 
-    0 0 40px #008cff;
+
+    transform:
+
+    translate(-50%, -50%)
+
+    scale(1.05);
+
 
 
 }
@@ -111,10 +183,38 @@ to{
 
 
 
-/* BUTTON CONTAINER */
+/* ===============================
+   GAME TITLE (IF USED)
+================================ */
+
+
+.game-title{
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+
+
+/* ===============================
+   BUTTON AREA
+================================ */
 
 
 .menu-buttons{
+
+
+    position:relative;
+
+
+    z-index:2;
+
 
 
     display:flex;
@@ -123,10 +223,13 @@ to{
     flex-direction:column;
 
 
+
     gap:18px;
 
 
-    width:320px;
+
+    width:340px;
+
 
 
 }
@@ -137,41 +240,66 @@ to{
 
 
 
-/* BUTTONS */
+/* ===============================
+   BUTTONS
+================================ */
 
 
 .menu-buttons button{
 
 
-    height:55px;
+    height:60px;
 
 
-    border-radius:12px;
+
+    border-radius:15px;
 
 
-    border:1px solid rgba(0,217,255,0.5);
+
+    border:
+
+
+    1px solid
+
+    rgba(0,220,255,0.45);
+
+
 
 
     background:
 
 
-    rgba(20,30,60,0.75);
+    rgba(10,20,45,0.75);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
 
 
 
     color:white;
 
 
-    font-size:20px;
+
+    font-size:21px;
+
+
+
+    letter-spacing:1px;
+
 
 
     cursor:pointer;
 
 
-    transition:0.3s;
 
+    transition:
 
-    backdrop-filter:blur(10px);
+    0.3s;
+
 
 
 }
@@ -185,7 +313,10 @@ to{
 .menu-buttons button:hover{
 
 
-    transform:scale(1.05);
+    transform:
+
+    scale(1.06);
+
 
 
     background:
@@ -195,14 +326,18 @@ to{
 
 
 
+
     box-shadow:
 
 
-    0 0 25px #00d9ff;
+    0 0 30px
+
+    rgba(0,220,255,0.8);
 
 
 
 }
+
 
 
 
@@ -212,16 +347,20 @@ to{
 
 /* ===============================
    SUB MENUS
-================================*/
+================================ */
 
 
 .sub-menu{
 
 
-    animation:fadeIn 0.5s;
+    animation:
+
+    fadeIn 0.5s;
+
 
 
 }
+
 
 
 
@@ -231,16 +370,31 @@ to{
 .sub-title{
 
 
+    position:relative;
+
+
+    z-index:2;
+
+
+
     font-size:45px;
 
 
-    letter-spacing:5px;
-
-
-    margin-bottom:40px;
-
-
     color:#8be9ff;
+
+
+
+    margin-bottom:35px;
+
+
+
+    text-shadow:
+
+
+    0 0 20px
+
+    rgba(0,220,255,0.8);
+
 
 
 }
@@ -250,42 +404,57 @@ to{
 
 
 
+
 .panel{
 
 
-    width:500px;
+    position:relative;
+
+
+    z-index:2;
+
+
+
+    width:520px;
+
 
 
     padding:35px;
 
 
-    border-radius:20px;
+
+    border-radius:25px;
 
 
 
     background:
 
 
-    rgba(15,25,50,0.8);
+    rgba(10,20,45,0.8);
 
 
 
     border:
 
-    1px solid rgba(0,217,255,0.35);
+
+    1px solid
+
+    rgba(0,220,255,0.35);
 
 
 
     box-shadow:
 
 
-    0 0 40px rgba(0,150,255,0.25);
+    0 0 40px
+
+    rgba(0,150,255,0.25);
 
 
 
     backdrop-filter:
 
-    blur(15px);
+    blur(20px);
 
 
 
@@ -303,6 +472,7 @@ to{
     margin-top:35px;
 
 
+
 }
 
 
@@ -310,6 +480,10 @@ to{
 
 
 
+
+/* ===============================
+   ANIMATION
+================================ */
 
 
 @keyframes fadeIn{
@@ -320,7 +494,11 @@ from{
 
     opacity:0;
 
-    transform:translateY(20px);
+
+    transform:
+
+    translateY(25px);
+
 
 
 }
@@ -331,7 +509,11 @@ to{
 
     opacity:1;
 
-    transform:translateY(0);
+
+    transform:
+
+    translateY(0);
+
 
 
 }
