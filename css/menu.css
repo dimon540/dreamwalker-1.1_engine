@@ -78,10 +78,10 @@
 
 
 
-    font-size:160px;
+    font-size:95px;
 
 
-    letter-spacing:35px;
+    letter-spacing:18px;
 
 
     font-weight:900;
@@ -94,7 +94,7 @@
 
     color:
 
-    rgba(0,220,255,0.08);
+    rgba(0,220,255,0.09);
 
 
 
@@ -102,16 +102,15 @@
 
 
 
-    0 0 40px
+    0 0 35px
 
-    rgba(0,180,255,0.25),
+    rgba(0,180,255,0.3),
 
 
 
-    0 0 100px
+    0 0 80px
 
     rgba(0,120,255,0.2);
-
 
 
 
@@ -130,7 +129,6 @@
 
 
 }
-
 
 
 
