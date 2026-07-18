@@ -12,7 +12,10 @@ console.log("History система завантажена");
 // =========================
 
 
-window.dialogueHistory = [];
+window.dialogueHistory = 
+JSON.parse(
+    localStorage.getItem("dialogueHistory")
+) || [];
 
 
 
