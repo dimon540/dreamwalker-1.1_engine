@@ -142,3 +142,12 @@ function continueGame(){
     }
 
 }
+function continueGame(){
+
+
+    alert(
+        "Збережень поки немає.\n\nЦя функція буде доступна після першого проходження."
+    );
+
+
+}
