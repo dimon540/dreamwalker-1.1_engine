@@ -2,125 +2,102 @@
 // DREAMWALKER MAIN MENU
 // =========================
 
-
 console.log("Menu система завантажена");
 
 
+// =========================
+// MENU MUSIC
+// =========================
+
+let menuMusicStarted = false;
+
+function startMenuAudio(){
+
+    if(menuMusicStarted){
+        return;
+    }
+
+    menuMusicStarted = true;
+
+    if(window.AudioManager){
+        AudioManager.playMenu();
+    }
+
+}
 
 
 // =========================
 // OPEN MAIN MENU
 // =========================
 
-
 function openMainMenu(){
-    document.addEventListener(
-"click",
-startMenuMusic,
-{
-once:true
-}
-);
-if(window.AudioManager){
 
-    AudioManager.playMenu();
-
-}
 
     const app =
     document.getElementById("app");
 
 
-
     app.innerHTML = `
-
 
     <div class="main-menu">
 
-
         <div class="game-title">
-
 
             DREAMWALKER
 
-
         </div>
-
-
-
 
         <div class="menu-buttons">
 
+            <button onclick="startMenuAudio(); newGame();">
 
+                Нова гра
 
-           <button onclick="startMenuAudio(); newGame()">
-Нова гра
-</button>
+            </button>
 
-
-
-            <button onclick="continueGame()">
+            <button onclick="startMenuAudio(); continueGame();">
 
                 Продовжити
 
             </button>
 
-
-
-            <button onclick="openChapterMenu()">
+            <button onclick="startMenuAudio(); openChapterMenu();">
 
                 Розділи
 
             </button>
 
-
-
-            <button onclick="showHistory()">
+            <button onclick="startMenuAudio(); showHistory();">
 
                 Історія
 
             </button>
 
-
-
-            <button onclick="openGalleryMenu()">
+            <button onclick="startMenuAudio(); openGalleryMenu();">
 
                 Галерея
 
             </button>
 
-
-
-            <button onclick="openSettingsMenu()">
+            <button onclick="startMenuAudio(); openSettingsMenu();">
 
                 Налаштування
 
             </button>
 
-
-
-            <button onclick="openAboutMenu()">
+            <button onclick="startMenuAudio(); openAboutMenu();">
 
                 Про гру
 
             </button>
 
-
-
         </div>
-
-
 
     </div>
 
-
     `;
 
-
 }
-
-
-
 
 
 
@@ -128,26 +105,16 @@ if(window.AudioManager){
 // NEW GAME
 // =========================
 
-
 function newGame(){
 
 
-
-    console.log(
-        "Нова гра"
-    );
+    console.log("Нова гра");
 
 
-
-    startScene(
-        "scene1"
-    );
+    startScene("scene1");
 
 
 }
-
-
-
 
 
 
@@ -155,53 +122,21 @@ function newGame(){
 // CONTINUE
 // =========================
 
-
 function continueGame(){
-
 
 
     if(typeof loadGame === "function"){
 
-
         loadGame();
 
-
     }
-    else{
 
+    else{
 
         console.log(
             "Система завантаження ще не готова"
         );
 
-
     }
-
-
-}
-function startMenuAudio(){
-
-
-    if(window.AudioManager){
-
-
-        AudioManager.playMenu();
-
-
-    }
-
-
-}
-function startMenuMusic(){
-
-
-    if(window.AudioManager){
-
-
-        AudioManager.playMenu();
-
-
-    }
-
 
 }
