@@ -25,7 +25,20 @@ JSON.parse(
 // =========================
 
 
-function addToHistory(step){
+dialogueHistory.push({
+
+    speaker:
+    step.speaker || "",
+
+
+    text:
+    step.text,
+
+
+    scene:
+    game.currentScene || null
+
+});
 
 
 
