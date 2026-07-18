@@ -189,3 +189,29 @@ function showDialogue(text){
 
 
 }
+// =========================
+// AUTO MODE
+// =========================
+
+
+window.autoMode = false;
+
+
+
+function toggleAuto(){
+
+
+    autoMode = !autoMode;
+
+
+
+    console.log(
+
+        "Авто режим:",
+
+        autoMode
+
+    );
+
+
+}
