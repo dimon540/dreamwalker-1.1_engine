@@ -148,20 +148,9 @@ function openHistoryMenu(){
 
 
 
-        <button
-
-        class="back-button"
-
-        onclick="openMainMenu()">
-
-
-
-            Назад
-
-
-
-        </button>
-
+       <button onclick="closeHistoryMenu()">
+    Назад
+</button>
 
 
 
@@ -193,5 +182,60 @@ function openHistory(){
     console.log("Відкриття історії під час гри");
 
     openHistoryMenu();
+
+}
+
+function closeHistoryMenu(){
+
+
+    const menu = document.querySelector(".sub-menu");
+
+
+    if(menu){
+
+        menu.remove();
+
+    }
+
+
+
+    const popup = document.querySelector(".popup-overlay");
+
+
+    if(popup){
+
+        popup.remove();
+
+    }
+
+
+
+    // якщо гра була запущена — повертаємо її
+
+    if(
+        window.SceneManager &&
+        SceneManager.currentScene
+    ){
+
+
+        Renderer.renderScene(
+            SceneManager.currentScene.steps[
+                SceneManager.currentStep
+            ]
+        );
+
+
+        return;
+
+
+    }
+
+
+
+    // інакше повертаємо головне меню
+
+    openMainMenu();
+
+
 
 }
