@@ -177,3 +177,10 @@ function openHistoryMenu(){
 
 
 }
+function openHistory(){
+
+
+    openHistoryMenu();
+
+
+}
