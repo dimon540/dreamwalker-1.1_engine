@@ -7,6 +7,7 @@ console.log("Menu система завантажена");
 
 
 
+
 // =========================
 // MENU MUSIC
 // =========================
@@ -44,6 +45,8 @@ function startMenuAudio(){
 
 
 
+
+
 // =========================
 // OPEN MAIN MENU
 // =========================
@@ -53,11 +56,7 @@ function openMainMenu(){
 
 
 
-    const app =
-
-    document.getElementById("app");
-
-
+    const app = document.getElementById("app");
 
 
 
@@ -205,6 +204,8 @@ function openMainMenu(){
 
 
 
+
+
 // =========================
 // NEW GAME
 // =========================
@@ -233,6 +234,8 @@ function newGame(){
 
 
 
+
+
 // =========================
 // CONTINUE GAME
 // =========================
@@ -242,29 +245,13 @@ function continueGame(){
 
 
 
-    if(typeof loadGame === "function"){
-
-
-
-        loadGame();
-
-
-
-    }
-
-    else{
-
-
-
-        showNoSaveMessage();
-
-
-
-    }
+    showNoSaveMessage();
 
 
 
 }
+
+
 
 
 
@@ -311,11 +298,11 @@ function showNoSaveMessage(){
 
             <p>
 
-                Після першого збереження
+                Продовження гри стане доступним
 
-                тут з'явиться можливість
+                після створення першого
 
-                продовжити гру.
+                збереження.
 
             </p>
 
@@ -365,6 +352,13 @@ function showNoSaveMessage(){
 
 
 
+
+
+
+
+// =========================
+// CLOSE POPUP
+// =========================
 
 
 function closePopup(){
