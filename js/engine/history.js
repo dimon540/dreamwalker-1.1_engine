@@ -7,6 +7,7 @@ console.log("History система завантажена");
 
 
 
+
 // =========================
 // HISTORY DATA
 // =========================
@@ -25,20 +26,7 @@ JSON.parse(
 // =========================
 
 
-dialogueHistory.push({
-
-    speaker:
-    step.speaker || "",
-
-
-    text:
-    step.text,
-
-
-    scene:
-    game.currentScene || null
-
-});
+window.addToHistory = function(step){
 
 
 
@@ -57,8 +45,10 @@ dialogueHistory.push({
         step.speaker || "",
 
 
+
         text:
         step.text,
+
 
 
         scene:
@@ -67,12 +57,19 @@ dialogueHistory.push({
 
     });
 
-localStorage.setItem(
-    "dialogueHistory",
-    JSON.stringify(dialogueHistory)
-);
 
-}
+
+    localStorage.setItem(
+
+        "dialogueHistory",
+
+        JSON.stringify(dialogueHistory)
+
+    );
+
+
+
+};
 
 
 
@@ -84,13 +81,13 @@ localStorage.setItem(
 // =========================
 
 
-function getHistory(){
+window.getHistory = function(){
 
 
     return dialogueHistory;
 
 
-}
+};
 
 
 
@@ -102,13 +99,18 @@ function getHistory(){
 // =========================
 
 
-function clearHistory(){
+window.clearHistory = function(){
 
 
     dialogueHistory = [];
 
 
-}
+    localStorage.removeItem(
+        "dialogueHistory"
+    );
+
+
+};
 
 
 
@@ -116,19 +118,22 @@ function clearHistory(){
 
 
 // =========================
-// SHOW HISTORY
+// SHOW HISTORY DEBUG
 // =========================
 
 
-function showHistory(){
+window.showHistory = function(){
 
 
 
     console.log(
+
         "Історія діалогів:",
+
         dialogueHistory
+
     );
 
 
 
-}
+};
