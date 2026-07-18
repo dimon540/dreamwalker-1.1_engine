@@ -1,5 +1,6 @@
 // =========================================
 // DREAMWALKER GALLERY MENU
+// LOCKED VERSION
 // =========================================
 
 
@@ -8,26 +9,49 @@ console.log("Gallery Menu завантажено");
 
 
 
-// =========================================
-// OPEN GALLERY
-// =========================================
-
 
 window.openGalleryMenu = function(){
 
 
 
-    document.getElementById("app").innerHTML = `
+document.getElementById("app").innerHTML = `
 
 
 
-    <div class="sub-menu gallery-screen">
+<div class="sub-menu gallery-screen">
 
 
 
-        <div class="background-title">
+    <div class="background-title">
 
-            DREAMWALKER
+        DREAMWALKER
+
+    </div>
+
+
+
+
+
+    <h1 class="sub-title">
+
+        ГАЛЕРЕЯ
+
+    </h1>
+
+
+
+
+
+
+    <div class="panel gallery-panel locked-gallery">
+
+
+
+
+
+        <div class="gallery-lock-icon">
+
+            🔒
 
         </div>
 
@@ -35,136 +59,23 @@ window.openGalleryMenu = function(){
 
 
 
-        <h1 class="sub-title">
+        <h2>
 
-            ГАЛЕРЕЯ
+            Галерея закрита
 
-        </h1>
+        </h2>
 
 
 
 
 
+        <p>
 
-        <div class="panel gallery-panel">
+            Цей розділ буде доступний
 
+            у повній версії DREAMWALKER
 
-
-
-
-            <div class="gallery-grid">
-
-
-
-
-
-                <div class="gallery-item unlocked">
-
-
-                    <img src="assets/backgrounds/scene1.jpg">
-
-
-                    <span>
-
-                    Пролог
-
-                    </span>
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="gallery-item unlocked">
-
-
-                    <img src="assets/backgrounds/scene1_2.jpg">
-
-
-                    <span>
-
-                    Місто
-
-                    </span>
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="gallery-item locked">
-
-
-                    🔒
-
-
-                    <span>
-
-                    CG недоступно
-
-                    </span>
-
-
-                </div>
-
-
-
-
-
-
-
-                <div class="gallery-item locked">
-
-
-                    🔒
-
-
-                    <span>
-
-                    Майбутній спогад
-
-                    </span>
-
-
-                </div>
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-        <button
-
-        class="back-button"
-
-        onclick="openMainMenu()">
-
-
-            Назад
-
-
-        </button>
+        </p>
 
 
 
@@ -174,7 +85,31 @@ window.openGalleryMenu = function(){
 
 
 
-    `;
+
+
+
+
+    <button
+
+    class="back-button"
+
+    onclick="openMainMenu()">
+
+
+        Назад
+
+
+    </button>
+
+
+
+
+
+</div>
+
+
+
+`;
 
 
 
