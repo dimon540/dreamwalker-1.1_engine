@@ -311,3 +311,7 @@ function resumeGame(){
 
 
 }
+window.startGame = startGame;
+window.startScene = startScene;
+window.nextStep = nextStep;
+window.endScene = endScene;
