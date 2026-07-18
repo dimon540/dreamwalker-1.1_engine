@@ -2,241 +2,233 @@
 // DREAMWALKER SETTINGS MENU
 // =========================================
 
+
 console.log("Settings Menu завантажено");
 
 
 
-// =========================================
-// OPEN SETTINGS
-// =========================================
+
 
 function openSettingsMenu(){
 
 
-    const settings =
-    window.gameSettings || {
 
-        music:0.7,
+const s =
+window.gameSettings;
 
-        ambience:0.3,
 
-        effects:0.8,
 
-        textSpeed:35,
+document.getElementById("app").innerHTML = `
 
-        autosave:true,
 
-        language:"Українська"
 
-    };
+<div class="sub-menu settings-screen">
 
 
 
-    document.getElementById("app").innerHTML = `
+<div class="background-title">
 
+DREAMWALKER
 
+</div>
 
-    <div class="sub-menu settings-screen">
 
 
 
-        <div class="background-title">
 
-            DREAMWALKER
+<h1 class="sub-title">
 
-        </div>
+НАЛАШТУВАННЯ
 
+</h1>
 
 
 
-        <h1 class="sub-title">
 
-            НАЛАШТУВАННЯ
 
-        </h1>
 
 
+<div class="panel settings-panel">
 
 
 
-        <div class="panel settings-panel">
 
 
+<label>
 
+🎵 Музика
 
+<span>
 
-            <label>
+${Math.round(s.music*100)}%
 
-                🎵 Музика
+</span>
 
-                <span id="musicValue">
+</label>
 
-                    ${Math.round(settings.music*100)}%
 
-                </span>
 
-            </label>
+<input
 
+type="range"
 
+min="0"
 
-            <input
+max="1"
 
-            type="range"
+step="0.05"
 
-            min="0"
+value="${s.music}"
 
-            max="1"
+oninput="changeMusicVolume(this.value)"
 
-            step="0.05"
+>
 
-            value="${settings.music}"
 
-            oninput="changeMusicVolume(this.value)"
 
-            >
 
 
 
+<label>
 
+🌆 Атмосфера
 
+<span>
 
-            <label>
+${Math.round(s.ambience*100)}%
 
-                🌆 Атмосфера
+</span>
 
-                <span id="ambienceValue">
+</label>
 
-                    ${Math.round(settings.ambience*100)}%
 
-                </span>
 
-            </label>
+<input
 
+type="range"
 
+min="0"
 
+max="1"
 
-            <input
+step="0.05"
 
-            type="range"
+value="${s.ambience}"
 
-            min="0"
+oninput="changeAmbienceVolume(this.value)"
 
-            max="1"
+>
 
-            step="0.05"
 
-            value="${settings.ambience}"
 
-            oninput="changeAmbienceVolume(this.value)"
 
-            >
 
 
 
+<label>
 
+🔊 Ефекти
 
-            <label>
+<span>
 
-                🔊 Ефекти
+${Math.round(s.effects*100)}%
 
-                <span id="effectsValue">
+</span>
 
-                    ${Math.round(settings.effects*100)}%
+</label>
 
-                </span>
 
-            </label>
 
+<input
 
+type="range"
 
+min="0"
 
-            <input
+max="1"
 
-            type="range"
+step="0.05"
 
-            min="0"
+value="${s.effects}"
 
-            max="1"
+oninput="changeEffectsVolume(this.value)"
 
-            step="0.05"
+>
 
-            value="${settings.effects}"
 
-            oninput="changeEffectsVolume(this.value)"
 
-            >
 
 
 
 
 
-            <label>
+<label>
 
-                ⌨ Швидкість тексту
+⌨ Швидкість тексту
 
-            </label>
+</label>
 
 
 
+<select onchange="changeTextSpeed(this.value)">
 
-            <select onchange="changeTextSpeed(this.value)">
 
+<option value="60">
 
-                <option value="60">
+Повільно
 
-                    Повільно
+</option>
 
-                </option>
 
+<option value="35" selected>
 
-                <option value="35" selected>
+Нормально
 
-                    Нормально
+</option>
 
-                </option>
 
+<option value="15">
 
-                <option value="15">
+Швидко
 
-                    Швидко
+</option>
 
-                </option>
 
+</select>
 
-            </select>
 
 
 
 
 
 
-            <label>
 
-                🌐 Мова
+<label>
 
-            </label>
+🌐 Мова
 
+</label>
 
 
 
-            <select>
+<select>
 
 
-                <option>
+<option>
 
-                    Українська
+Українська
 
-                </option>
+</option>
 
 
-                <option disabled>
+<option disabled>
 
-                    English (скоро)
+English (скоро)
 
-                </option>
+</option>
 
 
-            </select>
+</select>
 
 
 
@@ -244,30 +236,31 @@ function openSettingsMenu(){
 
 
 
-            <label class="checkbox-label">
+<label>
 
 
-                💾 Автозбереження
+💾 Автозбереження
 
 
 
-                <input
+<input
 
-                type="checkbox"
+type="checkbox"
 
-                ${settings.autosave ? "checked" : ""}
+${s.autosave ? "checked" : ""}
 
-                >
+onchange="changeAutosave(this.checked)"
 
+>
 
 
-            </label>
+</label>
 
 
 
 
 
-        </div>
+</div>
 
 
 
@@ -275,120 +268,29 @@ function openSettingsMenu(){
 
 
 
-        <button 
+<button
 
-        class="back-button"
+class="back-button"
 
-        onclick="openMainMenu()">
+onclick="openMainMenu()"
 
+>
 
-            Назад
 
+Назад
 
-        </button>
 
+</button>
 
 
 
 
-    </div>
 
+</div>
 
 
-    `;
+`;
 
-
-
-}
-
-
-
-
-
-
-// =========================================
-// VOLUME CONTROL
-// =========================================
-
-
-function changeMusicVolume(value){
-
-
-    if(window.AudioManager){
-
-
-        AudioManager.setMusicVolume(
-
-            Number(value)
-
-        );
-
-
-    }
-
-
-}
-
-
-
-
-
-function changeAmbienceVolume(value){
-
-
-    if(window.AudioManager){
-
-
-        AudioManager.setAmbienceVolume(
-
-            Number(value)
-
-        );
-
-
-    }
-
-
-}
-
-
-
-
-
-function changeEffectsVolume(value){
-
-
-    if(window.AudioManager){
-
-
-        AudioManager.setEffectsVolume(
-
-            Number(value)
-
-        );
-
-
-    }
-
-
-}
-
-
-
-
-
-function changeTextSpeed(value){
-
-
-    if(window.gameSettings){
-
-
-        gameSettings.textSpeed =
-
-        Number(value);
-
-
-    }
 
 
 }
