@@ -2,299 +2,300 @@
 // DREAMWALKER SETTINGS MENU
 // =========================================
 
-
 console.log("Settings Menu завантажено");
 
 
 
-
+// =========================================
+// OPEN SETTINGS
+// =========================================
 
 function openSettingsMenu(){
 
 
+    const settings =
+    window.gameSettings || {
 
-const settings =
-window.gameSettings || {
+        music:0.7,
 
+        ambience:0.3,
 
-    music:0.7,
+        effects:0.8,
 
-    ambience:0.3,
+        textSpeed:35,
 
-    effects:0.8,
+        autosave:true,
 
-    textSpeed:35,
+        language:"Українська"
 
-    autosave:true,
+    };
 
-    language:"Українська"
 
 
-};
+    document.getElementById("app").innerHTML = `
 
 
 
+    <div class="sub-menu settings-screen">
 
 
-document.getElementById("app").innerHTML = `
 
+        <div class="background-title">
 
+            DREAMWALKER
 
-<div class="menu-screen sub-menu settings-screen">
+        </div>
 
 
-<div class="background-title">
-DREAMWALKER
-</div>
 
 
+        <h1 class="sub-title">
 
+            НАЛАШТУВАННЯ
 
-<h1>
+        </h1>
 
-НАЛАШТУВАННЯ
 
-</h1>
 
 
 
+        <div class="panel settings-panel">
 
 
-<div class="settings-panel">
 
 
 
+            <label>
 
+                🎵 Музика
 
-<label>
+                <span id="musicValue">
 
-🎵 Музика
+                    ${Math.round(settings.music*100)}%
 
-<span id="musicValue">
-${Math.round(settings.music*100)}%
-</span>
+                </span>
 
-</label>
+            </label>
 
 
-<input
 
-type="range"
+            <input
 
-min="0"
+            type="range"
 
-max="1"
+            min="0"
 
-step="0.05"
+            max="1"
 
-value="${settings.music}"
+            step="0.05"
 
-oninput="
-changeMusicVolume(this.value)
-"
+            value="${settings.music}"
 
->
+            oninput="changeMusicVolume(this.value)"
 
+            >
 
 
 
 
 
 
+            <label>
 
-<label>
+                🌆 Атмосфера
 
-🌆 Атмосфера
+                <span id="ambienceValue">
 
-<span id="ambienceValue">
-${Math.round(settings.ambience*100)}%
-</span>
+                    ${Math.round(settings.ambience*100)}%
 
-</label>
+                </span>
 
+            </label>
 
 
-<input
 
-type="range"
 
-min="0"
+            <input
 
-max="1"
+            type="range"
 
-step="0.05"
+            min="0"
 
-value="${settings.ambience}"
+            max="1"
 
-oninput="
-changeAmbienceVolume(this.value)
-"
+            step="0.05"
 
->
+            value="${settings.ambience}"
 
+            oninput="changeAmbienceVolume(this.value)"
 
+            >
 
 
 
 
 
+            <label>
 
-<label>
+                🔊 Ефекти
 
-🔊 Ефекти
+                <span id="effectsValue">
 
-<span id="effectsValue">
-${Math.round(settings.effects*100)}%
-</span>
+                    ${Math.round(settings.effects*100)}%
 
-</label>
+                </span>
 
+            </label>
 
 
-<input
 
-type="range"
 
-min="0"
+            <input
 
-max="1"
+            type="range"
 
-step="0.05"
+            min="0"
 
-value="${settings.effects}"
+            max="1"
 
-oninput="
-changeEffectsVolume(this.value)
-"
+            step="0.05"
 
->
+            value="${settings.effects}"
 
+            oninput="changeEffectsVolume(this.value)"
 
+            >
 
 
 
 
 
+            <label>
 
-<label>
+                ⌨ Швидкість тексту
 
-⌨ Швидкість тексту
+            </label>
 
-</label>
 
 
 
-<select onchange="
-changeTextSpeed(this.value)
-">
+            <select onchange="changeTextSpeed(this.value)">
 
 
-<option value="60">
-Повільно
-</option>
+                <option value="60">
 
+                    Повільно
 
-<option value="35" selected>
-Нормально
-</option>
+                </option>
 
 
-<option value="15">
-Швидко
-</option>
+                <option value="35" selected>
 
+                    Нормально
 
-</select>
+                </option>
 
 
+                <option value="15">
 
+                    Швидко
 
+                </option>
 
 
+            </select>
 
-<label>
 
 
-🌐 Мова
 
 
-</label>
 
+            <label>
 
+                🌐 Мова
 
-<select>
+            </label>
 
 
-<option>
 
-Українська
 
-</option>
+            <select>
 
 
-<option disabled>
+                <option>
 
-English (скоро)
+                    Українська
 
-</option>
+                </option>
 
 
-</select>
+                <option disabled>
 
+                    English (скоро)
 
+                </option>
 
 
+            </select>
 
 
 
 
-<label>
 
 
-💾 Автозбереження
 
+            <label class="checkbox-label">
 
-<input
 
-type="checkbox"
+                💾 Автозбереження
 
-checked="${settings.autosave}"
 
->
 
-</label>
+                <input
 
+                type="checkbox"
 
+                ${settings.autosave ? "checked" : ""}
 
+                >
 
 
 
+            </label>
 
-</div>
 
 
 
 
+        </div>
 
 
 
 
-<button onclick="openMainMenu()">
 
-Назад
 
-</button>
 
+        <button 
 
+        class="back-button"
 
+        onclick="openMainMenu()">
 
 
+            Назад
 
-</div>
 
+        </button>
 
 
-`;
+
+
+
+    </div>
+
+
+
+    `;
 
 
 
@@ -305,23 +306,25 @@ checked="${settings.autosave}"
 
 
 
-
+// =========================================
+// VOLUME CONTROL
+// =========================================
 
 
 function changeMusicVolume(value){
 
 
-
-if(window.AudioManager){
-
-
-AudioManager.setMusicVolume(
-Number(value)
-);
+    if(window.AudioManager){
 
 
-}
+        AudioManager.setMusicVolume(
 
+            Number(value)
+
+        );
+
+
+    }
 
 
 }
@@ -333,22 +336,20 @@ Number(value)
 function changeAmbienceVolume(value){
 
 
+    if(window.AudioManager){
 
-if(window.AudioManager){
+
+        AudioManager.setAmbienceVolume(
+
+            Number(value)
+
+        );
 
 
-AudioManager.setAmbienceVolume(
-Number(value)
-);
+    }
 
 
 }
-
-
-
-}
-
-
 
 
 
@@ -357,21 +358,20 @@ Number(value)
 function changeEffectsVolume(value){
 
 
+    if(window.AudioManager){
 
-if(window.AudioManager){
+
+        AudioManager.setEffectsVolume(
+
+            Number(value)
+
+        );
 
 
-AudioManager.setEffectsVolume(
-Number(value)
-);
+    }
 
 
 }
-
-
-
-}
-
 
 
 
@@ -380,16 +380,15 @@ Number(value)
 function changeTextSpeed(value){
 
 
-
-if(window.gameSettings){
-
-
-gameSettings.textSpeed =
-Number(value);
+    if(window.gameSettings){
 
 
-}
+        gameSettings.textSpeed =
 
+        Number(value);
+
+
+    }
 
 
 }
