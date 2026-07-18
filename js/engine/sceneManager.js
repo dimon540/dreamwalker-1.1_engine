@@ -172,7 +172,21 @@ if(window.AudioManager){
         );
 
 
+// =========================
+// SAVE HISTORY
+// =========================
 
+
+if(
+    window.addToHistory &&
+
+    step.type !== "narration"
+
+){
+
+    addToHistory(step);
+
+}
 
 
 
