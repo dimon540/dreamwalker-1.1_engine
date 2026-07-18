@@ -1239,3 +1239,69 @@ translateY(0);
 
 
 }
+/* =====================================
+   ABOUT MENU
+===================================== */
+
+
+.about-panel{
+
+    width:560px;
+
+    text-align:center;
+
+}
+
+
+
+.about-panel h2{
+
+    color:#8be9ff;
+
+    font-size:38px;
+
+    letter-spacing:5px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.about-panel h3{
+
+    color:#ffffff;
+
+    font-size:26px;
+
+    font-style:italic;
+
+    margin:25px 0;
+
+}
+
+
+
+.about-panel p{
+
+    color:white;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    opacity:0.9;
+
+}
+
+
+
+.about-panel hr{
+
+    margin:25px 0;
+
+    border:
+
+    1px solid rgba(139,233,255,0.3);
+
+}
