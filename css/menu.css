@@ -13,7 +13,7 @@
 
 
     width:100%;
-    height:100vh;
+    min-height:100vh;
 
 
     display:flex;
@@ -34,7 +34,6 @@
 
     background:
 
-
     radial-gradient(
         circle at center,
         rgba(0,120,255,0.15),
@@ -48,7 +47,6 @@
     font-family:Arial, sans-serif;
 
 
-
 }
 
 
@@ -56,7 +54,7 @@
 
 
 /* ===============================
-   BACKGROUND DREAMWALKER LOGO
+   BACKGROUND LOGO
 ================================ */
 
 
@@ -101,7 +99,6 @@
     text-shadow:
 
 
-
     0 0 35px
 
     rgba(0,180,255,0.3),
@@ -125,7 +122,6 @@
     animation:
 
     logoPulse 6s infinite alternate;
-
 
 
 }
@@ -172,7 +168,6 @@ to{
 }
 
 
-
 }
 
 
@@ -180,9 +175,8 @@ to{
 
 
 
-
 /* ===============================
-   GAME TITLE (IF USED)
+   TITLE
 ================================ */
 
 
@@ -198,10 +192,51 @@ to{
 
 
 
+.sub-title{
+
+
+    position:relative;
+
+
+    z-index:2;
+
+
+
+    font-size:45px;
+
+
+    letter-spacing:6px;
+
+
+    color:#8be9ff;
+
+
+
+    text-shadow:
+
+
+    0 0 25px
+
+    rgba(0,220,255,0.8);
+
+
+
+    margin-bottom:30px;
+
+
+
+    text-align:center;
+
+
+}
+
+
+
+
 
 
 /* ===============================
-   BUTTON AREA
+   MAIN BUTTONS
 ================================ */
 
 
@@ -229,7 +264,6 @@ to{
     width:340px;
 
 
-
 }
 
 
@@ -237,17 +271,11 @@ to{
 
 
 
-
-/* ===============================
-   BUTTONS
-================================ */
-
-
-.menu-buttons button{
+.menu-buttons button,
+.settings-screen button{
 
 
     height:60px;
-
 
 
     border-radius:15px;
@@ -256,25 +284,16 @@ to{
 
     border:
 
-
     1px solid
 
     rgba(0,220,255,0.45);
 
 
 
-
     background:
 
 
-    rgba(10,20,45,0.75);
-
-
-
-    backdrop-filter:
-
-    blur(15px);
-
+    rgba(10,20,45,0.8);
 
 
 
@@ -282,11 +301,7 @@ to{
 
 
 
-    font-size:21px;
-
-
-
-    letter-spacing:1px;
+    font-size:20px;
 
 
 
@@ -294,10 +309,7 @@ to{
 
 
 
-    transition:
-
-    0.3s;
-
+    transition:0.3s;
 
 
 }
@@ -307,13 +319,11 @@ to{
 
 
 
+.menu-buttons button:hover,
+.settings-screen button:hover{
 
-.menu-buttons button:hover{
 
-
-    transform:
-
-    scale(1.06);
+    transform:scale(1.05);
 
 
 
@@ -321,7 +331,6 @@ to{
 
 
     rgba(0,150,255,0.35);
-
 
 
 
@@ -333,10 +342,7 @@ to{
     rgba(0,220,255,0.8);
 
 
-
 }
-
-
 
 
 
@@ -344,63 +350,8 @@ to{
 
 
 /* ===============================
-   SUB MENUS
+   PANELS
 ================================ */
-
-
-.sub-menu{
-
-
-    animation:
-
-    fadeIn 0.5s;
-
-
-
-}
-
-
-
-
-
-
-
-.sub-title{
-
-
-    position:relative;
-
-
-    z-index:2;
-
-
-
-    font-size:45px;
-
-
-    color:#8be9ff;
-
-
-
-    margin-bottom:35px;
-
-
-
-    text-shadow:
-
-
-    0 0 20px
-
-    rgba(0,220,255,0.8);
-
-
-
-}
-
-
-
-
-
 
 
 .panel{
@@ -416,7 +367,6 @@ to{
     width:520px;
 
 
-
     padding:35px;
 
 
@@ -428,7 +378,7 @@ to{
     background:
 
 
-    rgba(10,20,45,0.8);
+    rgba(10,20,45,0.85);
 
 
 
@@ -455,6 +405,57 @@ to{
     blur(20px);
 
 
+}
+
+
+
+
+
+
+
+/* ===============================
+   SETTINGS
+================================ */
+
+
+.settings-screen{
+
+
+    width:100%;
+
+
+    min-height:100vh;
+
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+
+    justify-content:flex-start;
+
+
+
+    align-items:center;
+
+
+
+    position:relative;
+
+
+
+    overflow-y:auto;
+
+
+
+    padding-top:60px;
+
+
+    padding-bottom:40px;
+
 
 }
 
@@ -464,11 +465,165 @@ to{
 
 
 
-.back-button{
+.settings-panel{
 
 
-    margin-top:35px;
+    position:relative;
 
+
+    z-index:2;
+
+
+
+    width:520px;
+
+
+    padding:30px;
+
+
+
+    margin-bottom:20px;
+
+
+
+}
+
+
+
+
+
+
+.settings-panel label{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+
+    color:white;
+
+
+
+    font-size:19px;
+
+
+
+    margin-top:18px;
+
+
+
+    margin-bottom:8px;
+
+
+}
+
+
+
+
+
+
+.settings-panel input[type="range"]{
+
+
+    width:100%;
+
+
+
+    accent-color:#00d9ff;
+
+
+}
+
+
+
+
+
+
+
+.settings-panel select{
+
+
+    width:100%;
+
+
+
+    height:45px;
+
+
+
+    border-radius:10px;
+
+
+
+    background:
+
+    rgba(0,0,0,0.45);
+
+
+
+    color:white;
+
+
+
+    border:
+
+    1px solid
+
+    rgba(0,220,255,0.4);
+
+
+
+    font-size:17px;
+
+
+}
+
+
+
+
+
+
+.checkbox-label{
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+
+.settings-screen button{
+
+
+    position:relative;
+
+
+    z-index:5;
+
+
+
+    width:250px;
+
+
+
+    height:55px;
+
+
+
+    flex-shrink:0;
+
+
+
+    margin-top:10px;
 
 
 }
@@ -498,8 +653,8 @@ from{
     translateY(25px);
 
 
-
 }
+
 
 
 to{
@@ -513,326 +668,8 @@ to{
     translateY(0);
 
 
-
 }
 
 
-}
-/* =====================================
-   SETTINGS MENU
-===================================== */
-
-
-.settings-screen{
-
-    width:100%;
-    height:100vh;
-
-
-    display:flex;
-
-    flex-direction:column;
-
-
-    justify-content:center;
-
-    align-items:center;
-
-
-
-    position:relative;
-
-
-    overflow:hidden;
-
-
-
-}
-
-
-
-
-.settings-screen h1{
-
-
-    position:relative;
-
-    z-index:2;
-
-
-    font-size:45px;
-
-
-    letter-spacing:6px;
-
-
-    color:#8be9ff;
-
-
-    text-shadow:
-
-
-    0 0 25px rgba(0,220,255,0.8);
-
-
-    margin-bottom:35px;
-
-
-}
-
-
-
-
-
-.settings-panel{
-
-
-    position:relative;
-
-    z-index:2;
-
-
-    width:520px;
-
-
-    padding:35px;
-
-
-    border-radius:25px;
-
-
-
-    background:
-
-
-    rgba(10,20,45,0.85);
-
-
-
-    border:
-
-
-    1px solid rgba(0,220,255,0.35);
-
-
-
-    box-shadow:
-
-
-    0 0 40px rgba(0,150,255,0.25);
-
-
-
-    backdrop-filter:blur(20px);
-
-
-}
-
-
-
-
-
-
-
-.settings-panel label{
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-
-    color:white;
-
-
-    font-size:20px;
-
-
-    margin-top:20px;
-
-
-    margin-bottom:10px;
-
-
-}
-
-
-
-
-
-
-
-.settings-panel input[type="range"]{
-
-
-    width:100%;
-
-
-    accent-color:#00d9ff;
-
-
-
-}
-
-
-
-
-
-
-
-.settings-panel select{
-
-
-    width:100%;
-
-
-    height:45px;
-
-
-    margin-bottom:10px;
-
-
-    border-radius:10px;
-
-
-
-    background:
-
-    rgba(0,0,0,0.4);
-
-
-
-    color:white;
-
-
-    border:
-
-
-    1px solid rgba(0,220,255,0.4);
-
-
-
-    font-size:17px;
-
-
-}
-
-
-
-
-
-
-
-.settings-panel input[type="checkbox"]{
-
-
-    transform:scale(1.4);
-
-
-}
-
-
-
-
-
-
-
-.settings-screen button{
-
-
-    position:relative;
-
-    z-index:5;
-
-
-    margin-top:30px;
-
-
-
-    width:250px;
-
-
-    height:55px;
-
-
-
-    border-radius:15px;
-
-
-
-    border:1px solid rgba(0,220,255,0.5);
-
-
-
-    background:
-
-    rgba(10,20,45,0.85);
-
-
-
-    color:white;
-
-
-
-    font-size:20px;
-
-
-
-    cursor:pointer;
-
-
-
-    display:block;
-
-
-
-}
-
-
-
-.settings-screen button:hover{
-
-
-    background:
-
-    rgba(0,150,255,0.35);
-
-
-
-    box-shadow:
-
-    0 0 25px #00d9ff;
-
-
-
-}
-
-
-
-
-
-.settings-screen button:hover{
-
-
-    background:
-
-    rgba(0,150,255,0.35);
-
-
-    box-shadow:
-
-
-    0 0 25px #00d9ff;
-
-
-}
-.settings-panel{
-
-    margin-bottom:20px;
 
 }
