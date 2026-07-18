@@ -1,5 +1,5 @@
 // =========================================
-// ABOUT
+// DREAMWALKER ABOUT MENU
 // =========================================
 
 
@@ -8,56 +8,250 @@ console.log("About Menu завантажено");
 
 
 
-
-function openAboutMenu(){
-
-
-
-document.getElementById("app").innerHTML = `
+// =========================================
+// OPEN ABOUT MENU
+// =========================================
 
 
-
-<div class="menu-screen">
+window.openAboutMenu = function(){
 
 
 
-<h1>
-DREAMWALKER
-</h1>
+    document.getElementById("app").innerHTML = `
 
 
 
-<p>
 
-Візуальна новела про мрії,
-страхи та шлях до себе.
-
-</p>
+    <div class="sub-menu about-screen">
 
 
 
-<p>
-
-Версія рушія: 1.0
-
-</p>
 
 
+        <div class="background-title">
 
-<button onclick="openMainMenu()">
+            DREAMWALKER
 
-Назад
-
-</button>
+        </div>
 
 
 
-</div>
 
 
 
-`;
+
+        <h1 class="sub-title">
+
+            ПРО ГРУ
+
+        </h1>
 
 
 
-}
+
+
+
+
+
+        <div class="panel about-panel">
+
+
+
+
+
+
+
+            <h2>
+
+                DREAMWALKER
+
+            </h2>
+
+
+
+
+
+
+
+            <p>
+
+                Атмосферна візуальна новела
+
+                про пошук власного шляху,
+
+                страх перед майбутнім
+
+                та бажання знайти своє місце
+
+                у світі.
+
+            </p>
+
+
+
+
+
+
+
+
+            <p>
+
+                Одного разу героїні сниться
+
+                незвичайний сон.
+
+                У ньому вона стикається
+
+                з питанням, яке змінить
+
+                її життя:
+
+            </p>
+
+
+
+
+
+
+
+            <h3>
+
+                «Ким ти хочеш стати?»
+
+            </h3>
+
+
+
+
+
+
+
+
+            <p>
+
+                Відповідь на це питання
+
+                стане першим кроком
+
+                її історії.
+
+            </p>
+
+
+
+
+
+
+
+
+            <hr>
+
+
+
+
+
+
+
+
+            <p>
+
+                Жанр:
+
+                <br>
+
+                <b>
+
+                Візуальна новела
+
+                </b>
+
+            </p>
+
+
+
+
+
+
+
+            <p>
+
+                Версія:
+
+                <br>
+
+                <b>
+
+                Demo 1.1
+
+                </b>
+
+            </p>
+
+
+
+
+
+
+
+            <p>
+
+                Розробка:
+
+                <br>
+
+                <b>
+
+                DREAMWALKER Studio
+
+                </b>
+
+            </p>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <button
+
+        class="back-button"
+
+        onclick="openMainMenu()">
+
+
+
+            Назад
+
+
+
+        </button>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+    `;
+
+
+
+};
