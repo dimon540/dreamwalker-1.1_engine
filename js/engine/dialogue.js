@@ -173,6 +173,16 @@ window.Dialogue = {
 function showDialogue(text){
 
 
+    addToHistory({
+
+        text:text,
+
+        speaker:""
+
+    });
+
+
+
     Dialogue.showText(
         text
     );
