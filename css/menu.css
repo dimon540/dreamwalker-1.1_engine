@@ -1182,3 +1182,60 @@ translateY(0);
 
 
 }
+/* =====================================
+   LOCKED GALLERY
+===================================== */
+
+
+.locked-gallery{
+
+    width:520px;
+
+    text-align:center;
+
+}
+
+
+
+.gallery-lock-icon{
+
+
+    font-size:70px;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.locked-gallery h2{
+
+
+    color:#8be9ff;
+
+
+    font-size:32px;
+
+
+}
+
+
+
+.locked-gallery p{
+
+
+    color:white;
+
+
+    font-size:20px;
+
+
+    line-height:1.5;
+
+
+    opacity:0.8;
+
+
+}
