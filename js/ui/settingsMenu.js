@@ -40,8 +40,12 @@ document.getElementById("app").innerHTML = `
 
 
 
-<div class="menu-screen settings-screen">
+<div class="menu-screen sub-menu settings-screen">
 
+
+<div class="background-title">
+DREAMWALKER
+</div>
 
 
 
