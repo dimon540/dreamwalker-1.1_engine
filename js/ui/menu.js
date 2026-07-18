@@ -264,87 +264,57 @@ function continueGame(){
 function showNoSaveMessage(){
 
 
-
-    document.getElementById("app").innerHTML += `
-
-
-
-    <div class="popup-overlay">
+    console.log("Відкриття повідомлення про сейви");
 
 
 
+    const popup = document.createElement("div");
+
+
+    popup.className = "popup-overlay";
+
+
+
+    popup.innerHTML = `
 
 
         <div class="popup-window">
 
 
-
-
-
             <h2>
-
                 ЗБЕРЕЖЕНЬ НЕМАЄ
-
             </h2>
 
 
 
-
-
-
-
             <p>
-
                 Продовження гри стане доступним
-
-                після створення першого
-
-                збереження.
-
+                після створення першого збереження.
             </p>
 
 
 
-
-
-
-
-            <button
-
+            <button 
             class="back-button"
-
             onclick="closePopup()">
 
-
-
                 Добре
-
-
 
             </button>
 
 
-
-
-
-
-
         </div>
-
-
-
-
-
-    </div>
-
 
 
     `;
 
 
 
-}
+    document.body.appendChild(popup);
 
+
+
+}
 
 
 
