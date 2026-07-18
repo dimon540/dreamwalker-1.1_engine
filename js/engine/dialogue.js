@@ -215,3 +215,26 @@ function toggleAuto(){
 
 
 }
+// =========================
+// AUTO MODE
+// =========================
+
+
+window.autoMode = false;
+
+
+
+function toggleAuto(){
+
+
+    window.autoMode = !window.autoMode;
+
+
+
+    console.log(
+        "Авто режим:",
+        window.autoMode
+    );
+
+
+}
