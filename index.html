@@ -7,11 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>DREAMWALKER</title>
 
-
-
-<!-- CSS -->
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -20,11 +18,11 @@
 <link rel="stylesheet" href="css/game.css">
 
 
-
 </head>
 
 
 <body>
+
 
 
 <div id="app"></div>
@@ -32,91 +30,47 @@
 
 
 
-<!-- =========================
-     SCENES
-========================= -->
-
-
-<script src="js/scenes/prologue/scene1.js"></script>
-
-
-
-
 
 <!-- =========================
-     CORE SYSTEMS
+     ENGINE SYSTEMS
 ========================= -->
 
-
-<script src="js/engine/variables.js"></script>
 
 <script src="js/engine/history.js"></script>
 
-<script src="js/engine/choices.js"></script>
-
-<script src="js/engine/dialogue.js"></script>
-
-<script src="js/engine/transitions.js"></script>
-
-<script src="js/engine/camera.js"></script>
-
-
-
-
-
-<!-- =========================
-     AUDIO
-========================= -->
-
-
-<script src="js/engine/audio.js"></script>
-
 <script src="js/engine/audioManager.js"></script>
 
+<script src="js/engine/engine.js"></script>
 
-
-
-
-<!-- =========================
-     RENDER
-========================= -->
-
-
-<script src="js/engine/renderer.js"></script>
-
-<script src="js/engine/sceneManager.js"></script>
-
-<script src="js/engine/game.js"></script>
 
 
 
 
 
 <!-- =========================
-     SAVE / SETTINGS
+     AUDIO DATA
 ========================= -->
 
 
-<script src="js/engine/save.js"></script>
+<script src="js/audio.js"></script>
 
-<script src="js/engine/settings.js"></script>
-
-<script src="js/engine/gallery.js"></script>
 
 
 
 
 
 <!-- =========================
-     UI
+     UI MENUS
 ========================= -->
 
 
-<script src="js/ui/menu.js"></script>
+<script src="js/menu.js"></script>
+
+<script src="js/ui/settings.js"></script>
 
 <script src="js/ui/chapterMenu.js"></script>
 
-<script src="js/ui/settingsMenu.js"></script>
+<script src="js/ui/historyMenu.js"></script>
 
 <script src="js/ui/galleryMenu.js"></script>
 
@@ -126,12 +80,17 @@
 
 
 
+
 <!-- =========================
-     START
+     GAME SYSTEM
 ========================= -->
 
 
+<script src="js/game.js"></script>
+
 <script src="js/main.js"></script>
+
+
 
 
 
