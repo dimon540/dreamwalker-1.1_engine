@@ -1,9 +1,3 @@
-console.log("historyMenu.js ПРАЦЮЄ");
-
-
-// =========================================
-// DREAMWALKER HISTORY MENU
-// =========================================
 // =========================================
 // DREAMWALKER HISTORY MENU
 // =========================================
@@ -15,16 +9,108 @@ console.log("History Menu завантажено");
 
 
 
-function openHistoryMenu(){
+window.historyFromGame = false;
 
 
 
-    const history = getHistory();
+
+
+
+
+
+function openHistoryMenu(fromGame=false){
+
+
+
+    historyFromGame = fromGame;
 
 
 
     const app =
+
     document.getElementById("app");
+
+
+
+
+
+    let content = "";
+
+
+
+
+
+    if(
+        History.entries.length === 0
+    ){
+
+
+        content = `
+
+
+        <div class="empty-history">
+
+            Історія ще порожня
+
+
+        </div>
+
+
+        `;
+
+
+    }
+
+    else{
+
+
+
+        History.entries.forEach(entry=>{
+
+
+            content += `
+
+
+            <div class="history-entry">
+
+
+                ${
+                entry.speaker
+                ?
+                `<div class="history-speaker">
+                ${entry.speaker}
+                </div>`
+                :
+                ""
+                }
+
+
+
+                <div class="history-text">
+
+                ${entry.text}
+
+                </div>
+
+
+
+            </div>
+
+
+            `;
+
+
+
+        });
+
+
+
+    }
+
+
+
+
+
 
 
 
@@ -32,9 +118,7 @@ function openHistoryMenu(){
 
 
 
-    <div class="sub-menu history-screen">
-
-
+    <div class="sub-menu">
 
 
 
@@ -48,15 +132,11 @@ function openHistoryMenu(){
 
 
 
+        <div class="sub-title">
 
+            Історія
 
-        <h1 class="sub-title">
-
-            ІСТОРІЯ
-
-        </h1>
-
-
+        </div>
 
 
 
@@ -66,77 +146,7 @@ function openHistoryMenu(){
         <div class="history-panel">
 
 
-
-
-
-        ${
-            
-            history.length === 0
-
-            ?
-
-            `
-
-            <div class="empty-history">
-
-                Історія ще порожня
-
-            </div>
-
-            `
-
-
-            :
-
-
-            history.map(entry => `
-
-
-                <div class="history-entry">
-
-
-                    ${
-                    
-                    entry.speaker
-
-                    ?
-
-                    `
-
-                    <div class="history-speaker">
-
-                    ${entry.speaker}
-
-                    </div>
-
-                    `
-
-                    :
-
-                    ""
-
-                    }
-
-
-
-                    <div class="history-text">
-
-                    ${entry.text}
-
-                    </div>
-
-
-
-                </div>
-
-
-
-            `).join("")
-
-        }
-
-
-
+            ${content}
 
 
         </div>
@@ -146,13 +156,19 @@ function openHistoryMenu(){
 
 
 
+        <button
+
+        class="back-button"
+
+        onclick="closeHistoryMenu()">
 
 
-       <button onclick="closeHistoryMenu()">
-    Назад
-</button>
+
+            Назад
 
 
+
+        </button>
 
 
 
@@ -166,76 +182,77 @@ function openHistoryMenu(){
 
 
 }
-function openHistory(){
 
 
-    openHistoryMenu();
 
 
-}
-// =========================
-// IN GAME HISTORY BUTTON
-// =========================
 
-function openHistory(){
 
-    console.log("Відкриття історії під час гри");
 
-    openHistoryMenu();
 
-}
 
 function closeHistoryMenu(){
 
 
-    const menu = document.querySelector(".sub-menu");
 
+    // якщо історія була відкрита з гри
 
-    if(menu){
-
-        menu.remove();
-
-    }
+    if(historyFromGame){
 
 
 
-    const popup = document.querySelector(".popup-overlay");
-
-
-    if(popup){
-
-        popup.remove();
-
-    }
+        if(
+            window.SceneManager &&
+            SceneManager.currentScene
+        ){
 
 
 
-    // якщо гра була запущена — повертаємо її
+            Renderer.renderScene(
 
-    if(
-        window.SceneManager &&
-        SceneManager.currentScene
-    ){
+                SceneManager.currentScene
+                .steps[
+                    SceneManager.currentStep
+                ]
 
-
-        Renderer.renderScene(
-            SceneManager.currentScene.steps[
-                SceneManager.currentStep
-            ]
-        );
+            );
 
 
-        return;
+
+            return;
+
+
+        }
+
 
 
     }
 
 
 
-    // інакше повертаємо головне меню
+
+
+    // якщо з головного меню
 
     openMainMenu();
 
+
+
+}
+
+
+
+
+
+
+
+
+// кнопка з гри
+
+function openHistory(){
+
+
+    openHistoryMenu(true);
 
 
 }
