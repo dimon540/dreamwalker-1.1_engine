@@ -67,7 +67,10 @@ dialogueHistory.push({
 
     });
 
-
+localStorage.setItem(
+    "dialogueHistory",
+    JSON.stringify(dialogueHistory)
+);
 
 }
 
