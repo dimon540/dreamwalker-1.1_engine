@@ -2,54 +2,102 @@
 // DREAMWALKER MAIN MENU
 // =========================
 
+
 console.log("Menu система завантажена");
+
 
 
 // =========================
 // MENU MUSIC
 // =========================
 
+
 let menuMusicStarted = false;
+
+
 
 function startMenuAudio(){
 
+
     if(menuMusicStarted){
+
         return;
+
     }
+
+
 
     menuMusicStarted = true;
 
+
+
     if(window.AudioManager){
+
         AudioManager.playMenu();
+
     }
 
+
 }
+
+
+
 
 
 // =========================
 // OPEN MAIN MENU
 // =========================
 
+
 function openMainMenu(){
 
 
+
     const app =
+
     document.getElementById("app");
+
+
+
 
 
     app.innerHTML = `
 
+
+
     <div class="main-menu">
+
+
+
+
 
         <div class="game-title">
 
             DREAMWALKER
 
         </div>
-<div class="background-title">
-    DREAMWALKER
-</div>
+
+
+
+
+
+        <div class="background-title">
+
+            DREAMWALKER
+
+        </div>
+
+
+
+
+
+
+
         <div class="menu-buttons">
+
+
+
+
 
             <button onclick="startMenuAudio(); newGame();">
 
@@ -57,11 +105,23 @@ function openMainMenu(){
 
             </button>
 
+
+
+
+
+
+
             <button onclick="startMenuAudio(); continueGame();">
 
                 Продовжити
 
             </button>
+
+
+
+
+
+
 
             <button onclick="startMenuAudio(); openChapterMenu();">
 
@@ -69,11 +129,23 @@ function openMainMenu(){
 
             </button>
 
-           <button onclick="openHistoryMenu()">
 
-Історія
 
-</button>
+
+
+
+
+            <button onclick="openHistoryMenu();">
+
+                Історія
+
+            </button>
+
+
+
+
+
+
 
             <button onclick="startMenuAudio(); openGalleryMenu();">
 
@@ -81,11 +153,23 @@ function openMainMenu(){
 
             </button>
 
+
+
+
+
+
+
             <button onclick="startMenuAudio(); openSettingsMenu();">
 
                 Налаштування
 
             </button>
+
+
+
+
+
+
 
             <button onclick="startMenuAudio(); openAboutMenu();">
 
@@ -93,13 +177,31 @@ function openMainMenu(){
 
             </button>
 
+
+
+
+
+
+
         </div>
+
+
+
+
 
     </div>
 
+
+
     `;
 
+
+
 }
+
+
+
+
 
 
 
@@ -107,47 +209,182 @@ function openMainMenu(){
 // NEW GAME
 // =========================
 
+
 function newGame(){
 
 
-    console.log("Нова гра");
+    console.log(
+
+        "Нова гра"
+
+    );
+
 
 
     startScene("scene1");
 
 
+
 }
 
 
 
+
+
+
+
 // =========================
-// CONTINUE
+// CONTINUE GAME
 // =========================
+
 
 function continueGame(){
 
 
+
     if(typeof loadGame === "function"){
 
+
+
         loadGame();
+
+
 
     }
 
     else{
 
-        console.log(
-            "Система завантаження ще не готова"
-        );
+
+
+        showNoSaveMessage();
+
+
 
     }
 
+
+
 }
-function continueGame(){
 
 
-    alert(
-        "Збережень поки немає.\n\nЦя функція буде доступна після першого проходження."
-    );
+
+
+
+
+
+// =========================
+// NO SAVE POPUP
+// =========================
+
+
+function showNoSaveMessage(){
+
+
+
+    document.getElementById("app").innerHTML += `
+
+
+
+    <div class="popup-overlay">
+
+
+
+
+
+        <div class="popup-window">
+
+
+
+
+
+            <h2>
+
+                ЗБЕРЕЖЕНЬ НЕМАЄ
+
+            </h2>
+
+
+
+
+
+
+
+            <p>
+
+                Після першого збереження
+
+                тут з'явиться можливість
+
+                продовжити гру.
+
+            </p>
+
+
+
+
+
+
+
+            <button
+
+            class="back-button"
+
+            onclick="closePopup()">
+
+
+
+                Добре
+
+
+
+            </button>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+    `;
+
+
+
+}
+
+
+
+
+
+
+
+function closePopup(){
+
+
+
+    const popup =
+
+    document.querySelector(".popup-overlay");
+
+
+
+    if(popup){
+
+
+        popup.remove();
+
+
+    }
+
 
 
 }
