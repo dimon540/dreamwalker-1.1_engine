@@ -8,150 +8,153 @@ console.log("History система завантажена");
 
 
 
-// =========================================
-// LOAD HISTORY
-// =========================================
+
+window.History = {
 
 
-window.dialogueHistory = JSON.parse(
-
-    localStorage.getItem("dialogueHistory")
-
-) || [];
+    entries: [],
 
 
 
 
-// =========================================
-// ADD HISTORY ENTRY
-// =========================================
+    add(entry){
 
 
-window.addToHistory = function(step){
+        if(!entry || !entry.text){
+
+            return;
+
+        }
 
 
-    if(!step || !step.text){
 
-        return;
+
+        const last =
+
+        this.entries[
+            this.entries.length - 1
+        ];
+
+
+
+
+        // захист від дублювання
+
+        if(
+            last &&
+            last.text === entry.text
+        ){
+
+            return;
+
+        }
+
+
+
+
+
+        this.entries.push(entry);
+
+
+
+
+        localStorage.setItem(
+
+            "dreamwalkerHistory",
+
+            JSON.stringify(
+                this.entries
+            )
+
+        );
+
+
+
+    },
+
+
+
+
+
+
+
+
+    load(){
+
+
+        const saved =
+
+        localStorage.getItem(
+            "dreamwalkerHistory"
+        );
+
+
+
+
+        if(saved){
+
+
+            this.entries =
+
+            JSON.parse(saved);
+
+
+        }
+
+
+
+    },
+
+
+
+
+
+
+
+    clear(){
+
+
+        this.entries = [];
+
+
+        localStorage.removeItem(
+            "dreamwalkerHistory"
+        );
+
 
     }
 
 
 
-    // якщо тип не заданий
-    // вважаємо думкою
 
-    let type =
-    step.type || "thought";
+};
 
 
 
 
 
-    dialogueHistory.push({
 
-
-        type:type,
-
-
-        speaker:
-        step.speaker || "",
+History.load();
 
 
 
-        text:
-        step.text,
 
 
 
-        scene:
-
-        SceneManager.currentScene || null
 
 
+function addToHistory(text, speaker=""){
+
+
+
+    History.add({
+
+        text:text,
+
+        speaker:speaker
 
     });
 
 
 
-
-
-
-    localStorage.setItem(
-
-        "dialogueHistory",
-
-        JSON.stringify(dialogueHistory)
-
-    );
-
-
-
-};
-
-
-
-
-
-
-// =========================================
-// GET HISTORY
-// =========================================
-
-
-window.getHistory = function(){
-
-
-    return dialogueHistory;
-
-
-};
-
-
-
-
-
-
-// =========================================
-// CLEAR HISTORY
-// =========================================
-
-
-window.clearHistory = function(){
-
-
-    dialogueHistory = [];
-
-
-    localStorage.removeItem(
-
-        "dialogueHistory"
-
-    );
-
-
-};
-
-
-
-
-
-
-// =========================================
-// DEBUG
-// =========================================
-
-
-window.showHistory = function(){
-
-
-    console.log(
-
-        "Історія:",
-
-        dialogueHistory
-
-    );
-
-
-};
+}
