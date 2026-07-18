@@ -69,11 +69,11 @@ function openMainMenu(){
 
             </button>
 
-            <button onclick="startMenuAudio(); showHistory();">
+           <button onclick="openHistoryMenu()">
 
-                Історія
+Історія
 
-            </button>
+</button>
 
             <button onclick="startMenuAudio(); openGalleryMenu();">
 
