@@ -243,14 +243,11 @@ function newGame(){
 
 function continueGame(){
 
-
+    console.log("CONTINUE BUTTON WORKS");
 
     showNoSaveMessage();
 
-
-
 }
-
 
 
 
