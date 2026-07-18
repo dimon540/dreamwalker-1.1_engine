@@ -1,5 +1,5 @@
 // =========================================
-// DREAMWALKER GALLERY
+// DREAMWALKER GALLERY MENU
 // =========================================
 
 
@@ -8,44 +8,174 @@ console.log("Gallery Menu завантажено");
 
 
 
-
-function openGalleryMenu(){
-
-
-
-document.getElementById("app").innerHTML = `
+// =========================================
+// OPEN GALLERY
+// =========================================
 
 
-
-<div class="menu-screen">
-
-
-<h1>
-ГАЛЕРЕЯ
-</h1>
+window.openGalleryMenu = function(){
 
 
 
-<p>
-Галерея буде доступна після відкриття CG сцен.
-</p>
+    document.getElementById("app").innerHTML = `
 
 
 
-<button onclick="openMainMenu()">
-
-Назад
-
-</button>
+    <div class="sub-menu gallery-screen">
 
 
 
-</div>
+        <div class="background-title">
+
+            DREAMWALKER
+
+        </div>
 
 
 
-`;
+
+
+        <h1 class="sub-title">
+
+            ГАЛЕРЕЯ
+
+        </h1>
 
 
 
-}
+
+
+
+        <div class="panel gallery-panel">
+
+
+
+
+
+            <div class="gallery-grid">
+
+
+
+
+
+                <div class="gallery-item unlocked">
+
+
+                    <img src="assets/backgrounds/scene1.jpg">
+
+
+                    <span>
+
+                    Пролог
+
+                    </span>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="gallery-item unlocked">
+
+
+                    <img src="assets/backgrounds/scene1_2.jpg">
+
+
+                    <span>
+
+                    Місто
+
+                    </span>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="gallery-item locked">
+
+
+                    🔒
+
+
+                    <span>
+
+                    CG недоступно
+
+                    </span>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="gallery-item locked">
+
+
+                    🔒
+
+
+                    <span>
+
+                    Майбутній спогад
+
+                    </span>
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <button
+
+        class="back-button"
+
+        onclick="openMainMenu()">
+
+
+            Назад
+
+
+        </button>
+
+
+
+
+
+    </div>
+
+
+
+    `;
+
+
+
+};
