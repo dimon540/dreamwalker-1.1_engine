@@ -94,7 +94,7 @@ app.innerHTML = `
 
 
 
-<div 
+<div
 class="background"
 style="
 background-image:url('${step.background || ""}');
@@ -178,20 +178,6 @@ ${step.speaker}
 
 
 <div class="game-hud">
-
-
-<button onclick="openHistory()">
-
-Історія
-
-</button>
-
-
-<button onclick="toggleAuto()">
-
-Авто
-
-</button>
 
 
 <button onclick="openPauseMenu()">
