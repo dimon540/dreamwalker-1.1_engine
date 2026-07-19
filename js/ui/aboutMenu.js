@@ -53,7 +53,7 @@ window.openAboutMenu = function(){
 
 
 
-        <div class="panel about-panel">
+        <div class="about-panel">
 
 
 
@@ -76,13 +76,9 @@ window.openAboutMenu = function(){
             <p>
 
                 Атмосферна візуальна новела
-
                 про пошук власного шляху,
-
                 страх перед майбутнім
-
                 та бажання знайти своє місце
-
                 у світі.
 
             </p>
@@ -97,14 +93,11 @@ window.openAboutMenu = function(){
             <p>
 
                 Одного разу героїні сниться
-
                 незвичайний сон.
 
                 У ньому вона стикається
-
                 з питанням, яке змінить
-
-                її життя:
+                її життя.
 
             </p>
 
@@ -130,9 +123,7 @@ window.openAboutMenu = function(){
             <p>
 
                 Відповідь на це питання
-
                 стане першим кроком
-
                 її історії.
 
             </p>
@@ -155,16 +146,12 @@ window.openAboutMenu = function(){
 
             <p>
 
-                Жанр:
+                <b>Жанр</b>
 
                 <br>
-
-                <b>
 
                 Візуальна новела
 
-                </b>
-
             </p>
 
 
@@ -175,16 +162,12 @@ window.openAboutMenu = function(){
 
             <p>
 
-                Версія:
+                <b>Версія</b>
 
                 <br>
-
-                <b>
 
                 Demo 1.1
 
-                </b>
-
             </p>
 
 
@@ -195,18 +178,29 @@ window.openAboutMenu = function(){
 
             <p>
 
-                Розробка:
+                <b>Розробка</b>
 
                 <br>
 
-                <b>
-
                 DREAMWALKER Studio
-
-                </b>
 
             </p>
 
+
+
+
+
+
+
+            <button
+
+            class="back-button"
+
+            onclick="openMainMenu()">
+
+                Назад
+
+            </button>
 
 
 
@@ -214,30 +208,6 @@ window.openAboutMenu = function(){
 
 
         </div>
-
-
-
-
-
-
-
-
-
-        <button
-
-        class="back-button"
-
-        onclick="openMainMenu()">
-
-
-
-            Назад
-
-
-
-        </button>
-
-
 
 
 
